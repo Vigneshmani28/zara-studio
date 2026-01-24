@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 
 const testimonials = [
   {
@@ -26,7 +27,7 @@ const Testimonials = () => {
     <section className="section-padding bg-secondary/30">
       <div className="arch-container">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="arch-divider" />
             <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -37,30 +38,29 @@ const Testimonials = () => {
           <h2 className="font-serif text-display text-foreground">
             Words From Our Clients
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.15}>
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-background p-8 md:p-10 border border-border relative"
-            >
-              <Quote className="h-10 w-10 text-accent/30 absolute top-8 right-8" />
-              <blockquote className="font-serif text-heading text-foreground mb-8 leading-relaxed italic">
-                "{testimonial.quote}"
-              </blockquote>
-              <div className="border-t border-border pt-6">
-                <p className="font-sans text-body font-medium text-foreground">
-                  {testimonial.author}
-                </p>
-                <p className="font-sans text-caption text-muted-foreground mt-1">
-                  {testimonial.role}
-                </p>
+            <StaggerItem key={index}>
+              <div className="bg-background p-8 md:p-10 border border-border relative h-full">
+                <Quote className="h-10 w-10 text-accent/30 absolute top-8 right-8" />
+                <blockquote className="font-serif text-heading text-foreground mb-8 leading-relaxed italic">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="border-t border-border pt-6">
+                  <p className="font-sans text-body font-medium text-foreground">
+                    {testimonial.author}
+                  </p>
+                  <p className="font-sans text-caption text-muted-foreground mt-1">
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

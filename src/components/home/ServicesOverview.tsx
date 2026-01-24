@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 
 const services = [
   {
@@ -39,7 +40,7 @@ const ServicesOverview = () => {
     <section className="section-padding bg-secondary/30">
       <div className="arch-container">
         {/* Header */}
-        <div className="max-w-2xl mb-16">
+        <ScrollReveal className="max-w-2xl mb-16">
           <div className="flex items-center gap-4 mb-6">
             <div className="arch-divider" />
             <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -52,38 +53,39 @@ const ServicesOverview = () => {
           <p className="text-body-lg text-muted-foreground">
             From initial concept to final execution, we offer end-to-end architectural and design services that transform your vision into reality.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Services List */}
-        <div className="space-y-0">
+        <StaggerContainer className="space-y-0" staggerDelay={0.1}>
           {services.map((service) => (
-            <Link
-              key={service.number}
-              to={service.link}
-              className="service-card group block py-8 border-t border-border last:border-b"
-            >
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-                {/* Number */}
-                <span className="font-sans text-caption tracking-architectural text-accent">
-                  {service.number}
-                </span>
+            <StaggerItem key={service.number}>
+              <Link
+                to={service.link}
+                className="service-card group block py-8 border-t border-border last:border-b"
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+                  {/* Number */}
+                  <span className="font-sans text-caption tracking-architectural text-accent">
+                    {service.number}
+                  </span>
 
-                {/* Title */}
-                <h3 className="font-serif text-heading-lg text-foreground flex-1 group-hover:text-accent transition-colors">
-                  {service.title}
-                </h3>
+                  {/* Title */}
+                  <h3 className="font-serif text-heading-lg text-foreground flex-1 group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-body text-muted-foreground flex-1 max-w-md">
-                  {service.description}
-                </p>
+                  {/* Description */}
+                  <p className="text-body text-muted-foreground flex-1 max-w-md">
+                    {service.description}
+                  </p>
 
-                {/* Arrow */}
-                <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-              </div>
-            </Link>
+                  {/* Arrow */}
+                  <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </div>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import projectResidential1 from "@/assets/project-residential-1.jpg";
 import projectCommercial1 from "@/assets/project-commercial-1.jpg";
 import projectInterior1 from "@/assets/project-interior-1.jpg";
@@ -55,73 +56,77 @@ const FeaturedProjects = () => {
     <section className="section-padding bg-background">
       <div className="arch-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="arch-divider" />
-              <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
-                Featured Work
-              </span>
+        <ScrollReveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="arch-divider" />
+                <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
+                  Featured Work
+                </span>
+              </div>
+              <h2 className="font-serif text-display text-foreground">
+                Selected Projects
+              </h2>
             </div>
-            <h2 className="font-serif text-display text-foreground">
-              Selected Projects
-            </h2>
+            <Button variant="minimal" asChild className="group">
+              <Link to="/projects">
+                View All Projects
+                <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
           </div>
-          <Button variant="minimal" asChild className="group">
-            <Link to="/projects">
-              View All Projects
-              <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-        </div>
+        </ScrollReveal>
 
         {/* Projects Grid - Masonry-like */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <Link
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.12}>
+          {projects.map((project) => (
+            <StaggerItem
               key={project.id}
-              to={`/projects/${project.id}`}
-              className={`project-card image-zoom group block relative ${
-                project.featured ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              className={project.featured ? "md:col-span-2 md:row-span-2" : ""}
             >
-              <div
-                className={`relative overflow-hidden bg-muted ${
-                  project.featured
-                    ? "aspect-[16/10] md:aspect-[16/9]"
-                    : "aspect-[4/5]"
-                }`}
+              <Link
+                to={`/projects/${project.id}`}
+                className="project-card image-zoom group block relative h-full"
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="project-overlay" />
+                <div
+                  className={`relative overflow-hidden bg-muted h-full ${
+                    project.featured
+                      ? "aspect-[16/10] md:aspect-[16/9]"
+                      : "aspect-[4/5]"
+                  }`}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="project-overlay" />
 
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-2">
-                    {project.category} · {project.location}
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-2">
+                      {project.category} · {project.location}
+                    </span>
+                    <h3 className="font-serif text-heading-lg md:text-heading-xl text-primary-foreground">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Always visible info */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/80 to-transparent group-hover:opacity-0 transition-opacity duration-500 pointer-events-none md:hidden">
+                  <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-1 block">
+                    {project.category}
                   </span>
-                  <h3 className="font-serif text-heading-lg md:text-heading-xl text-primary-foreground">
+                  <h3 className="font-serif text-heading text-primary-foreground">
                     {project.title}
                   </h3>
                 </div>
-              </div>
-
-              {/* Always visible info */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/80 to-transparent group-hover:opacity-0 transition-opacity duration-500 pointer-events-none md:hidden">
-                <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-1 block">
-                  {project.category}
-                </span>
-                <h3 className="font-serif text-heading text-primary-foreground">
-                  {project.title}
-                </h3>
-              </div>
-            </Link>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

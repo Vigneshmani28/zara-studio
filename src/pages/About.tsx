@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import founderImage from "@/assets/founder-portrait.jpg";
 import studioImage from "@/assets/studio-workspace.jpg";
 
@@ -32,7 +33,7 @@ const About = () => {
         {/* Hero */}
         <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
           <div className="arch-container">
-            <div className="max-w-4xl">
+            <ScrollReveal className="max-w-4xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="arch-divider" />
                 <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -45,7 +46,7 @@ const About = () => {
               <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
                 For over two decades, Zara Architects has been redefining the boundaries of architectural excellence. Our studio brings together a passion for design innovation with deep respect for timeless principles.
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -53,7 +54,7 @@ const About = () => {
         <section className="section-padding bg-secondary/30">
           <div className="arch-container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <ScrollReveal direction="left">
                 <h2 className="font-serif text-display text-foreground mb-8">
                   Our Story
                 </h2>
@@ -68,14 +69,14 @@ const About = () => {
                     Today, our portfolio spans residential masterpieces, commercial landmarks, and interior transformations across three continents. Each project, regardless of scale, receives the same level of dedication and creative rigor.
                   </p>
                 </div>
-              </div>
-              <div className="relative">
+              </ScrollReveal>
+              <ScrollReveal direction="right" delay={0.2}>
                 <img
                   src={studioImage}
                   alt="Zara Architects studio"
                   className="w-full aspect-4/5 object-cover"
                 />
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
@@ -84,14 +85,14 @@ const About = () => {
         <section className="section-padding bg-background">
           <div className="arch-container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="order-2 lg:order-1">
+              <ScrollReveal direction="left" className="order-2 lg:order-1">
                 <img
                   src={founderImage}
                   alt="Sarah Zara, Principal Architect"
                   className="w-full max-w-md aspect-3/4 object-cover"
                 />
-              </div>
-              <div className="order-1 lg:order-2">
+              </ScrollReveal>
+              <ScrollReveal direction="right" delay={0.1} className="order-1 lg:order-2">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="arch-divider" />
                   <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -112,7 +113,7 @@ const About = () => {
                     "Great architecture is not about making a statement. It's about creating the conditions for life to flourish."
                   </p>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
@@ -120,7 +121,7 @@ const About = () => {
         {/* Design Philosophy */}
         <section className="section-padding bg-primary text-primary-foreground">
           <div className="arch-container">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-12 h-px bg-accent" />
                 <span className="font-sans text-small tracking-architectural uppercase opacity-80">
@@ -131,30 +132,29 @@ const About = () => {
               <h2 className="font-serif text-display">
                 Design Principles
               </h2>
-            </div>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8" staggerDelay={0.1}>
               {values.map((value, index) => (
-                <div
-                  key={value.title}
-                  className="p-8 md:p-10 border border-primary-foreground/10"
-                >
-                  <span className="font-sans text-small tracking-architectural text-accent mb-4 block">
-                    0{index + 1}
-                  </span>
-                  <h3 className="font-serif text-heading-lg mb-4">{value.title}</h3>
-                  <p className="text-body-lg opacity-80 leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
+                <StaggerItem key={value.title}>
+                  <div className="p-8 md:p-10 border border-primary-foreground/10 h-full">
+                    <span className="font-sans text-small tracking-architectural text-accent mb-4 block">
+                      0{index + 1}
+                    </span>
+                    <h3 className="font-serif text-heading-lg mb-4">{value.title}</h3>
+                    <p className="text-body-lg opacity-80 leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* CTA */}
         <section className="section-padding bg-secondary/30">
-          <div className="arch-container text-center">
+          <ScrollReveal className="arch-container text-center">
             <h2 className="font-serif text-display text-foreground mb-6">
               Ready to Work Together?
             </h2>
@@ -164,7 +164,7 @@ const About = () => {
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">Start a Conversation</Link>
             </Button>
-          </div>
+          </ScrollReveal>
         </section>
       </main>
       <Footer />
