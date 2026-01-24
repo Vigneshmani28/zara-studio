@@ -1,20 +1,84 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 import heroImage from "@/assets/hero-architecture.jpg";
+import projectResidential1 from "@/assets/project-residential-1.jpg";
+import projectCommercial1 from "@/assets/project-commercial-1.jpg";
+import projectInterior1 from "@/assets/project-interior-1.jpg";
+import projectResidential2 from "@/assets/project-residential-2.jpg";
+
+const heroImages = [
+  { src: heroImage, alt: "Modern architectural interior with natural light" },
+  { src: projectResidential1, alt: "Luxury residential architecture" },
+  { src: projectCommercial1, alt: "Contemporary commercial building" },
+  { src: projectInterior1, alt: "Elegant interior design" },
+  { src: projectResidential2, alt: "Modern residential project" },
+];
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+      setIsTransitioning(false);
+    }, 500);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Images with Ken Burns Effect */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Modern architectural interior with natural light"
-          className="w-full h-full object-cover"
-        />
+        {heroImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentIndex
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-110"
+            }`}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${
+                index === currentIndex && !isTransitioning ? "scale-110" : "scale-100"
+              }`}
+            />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setIsTransitioning(true);
+              setTimeout(() => {
+                setCurrentIndex(index);
+                setIsTransitioning(false);
+              }, 300);
+            }}
+            className={`h-1 rounded-full transition-all duration-500 ${
+              index === currentIndex
+                ? "w-8 bg-accent"
+                : "w-2 bg-primary-foreground/40 hover:bg-primary-foreground/60"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
 
       {/* Content */}
