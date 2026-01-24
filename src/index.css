@@ -252,6 +252,10 @@
     animation: fade-up 0.8s ease-out forwards;
   }
 
+  .duration-1500 {
+    transition-duration: 1500ms;
+  }
+
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
   }

@@ -18,42 +18,29 @@ const heroImages = [
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const nextSlide = useCallback(() => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-      setIsTransitioning(false);
-    }, 500);
+    setCurrentIndex((prev) => (prev + 1) % heroImages.length);
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 6000);
+    const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
   }, [nextSlide]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Images with Ken Burns Effect */}
+      {/* Background Images with Smooth Crossfade */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
-          <div
+          <img
             key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              index === currentIndex
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-110"
+            src={image.src}
+            alt={image.alt}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${
-                index === currentIndex && !isTransitioning ? "scale-110" : "scale-100"
-              }`}
-            />
-          </div>
+          />
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
@@ -64,13 +51,7 @@ const HeroSection = () => {
         {heroImages.map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              setIsTransitioning(true);
-              setTimeout(() => {
-                setCurrentIndex(index);
-                setIsTransitioning(false);
-              }, 300);
-            }}
+            onClick={() => setCurrentIndex(index)}
             className={`h-1 rounded-full transition-all duration-500 ${
               index === currentIndex
                 ? "w-8 bg-accent"
