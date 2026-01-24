@@ -5,7 +5,7 @@ import studioImage from "@/assets/studio-workspace.jpg";
 
 const CTASection = () => {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -13,24 +13,62 @@ const CTASection = () => {
           alt="Zara Architects studio workspace"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-primary/80" />
+        <div className="absolute inset-0 bg-primary/85" />
       </div>
 
       {/* Content */}
-      <ScrollReveal className="relative z-10 arch-container text-center">
-        <h2 className="font-serif text-display md:text-display-lg text-primary-foreground mb-6">
-          Let's Design Your Dream Space
+      <ScrollReveal className="relative z-10 arch-container text-center px-6">
+        {/* Simple Header */}
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="w-8 h-px bg-accent" />
+          <span className="font-sans text-sm tracking-[0.2em] uppercase text-primary-foreground/80">
+            Let's Collaborate
+          </span>
+          <div className="w-8 h-px bg-accent" />
+        </div>
+
+        {/* Main Heading */}
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-8 leading-tight">
+          Ready to Begin
+          <span className="block text-accent">Your Project?</span>
         </h2>
-        <p className="text-body-lg text-primary-foreground/90 mb-10 max-w-2xl mx-auto">
-          Ready to transform your vision into reality? Schedule a consultation with our team and take the first step toward your perfect space.
+
+        {/* Subheading */}
+        <p className="text-lg text-primary-foreground/90 mb-10 max-w-2xl mx-auto">
+          Let's work together to create something extraordinary. 
+          Schedule a consultation with our team today.
         </p>
+
+        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="hero" size="xl" className="bg-accent hover:bg-accent/90" asChild>
-            <Link to="/contact">Book a Consultation</Link>
+          <Button 
+            variant="default" 
+            size="lg"
+            className="bg-accent hover:bg-accent/90 px-8 py-6"
+            asChild
+          >
+            <Link to="/contact">
+              Book a Consultation
+            </Link>
           </Button>
-          <Button variant="heroOutline" size="xl" asChild>
-            <Link to="/projects">Explore Our Work</Link>
+          
+          <Button 
+            variant="outline"
+            size="lg"
+            className="border-primary-foreground  hover:bg-white/10 px-8 py-6"
+            asChild
+          >
+            <Link to="/projects">
+              View Our Work
+            </Link>
           </Button>
+        </div>
+
+        {/* Simple Info */}
+        <div className="mt-12 pt-6 border-t border-primary-foreground/20">
+          <p className="text-sm text-primary-foreground/70">
+            Free initial consultation • Worldwide projects • Award-winning team
+          </p>
         </div>
       </ScrollReveal>
     </section>

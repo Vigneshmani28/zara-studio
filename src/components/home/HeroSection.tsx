@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import heroImage from "@/assets/hero-architecture.jpg";
-import projectResidential1 from "@/assets/project-residential-1.jpg";
-import projectCommercial1 from "@/assets/project-commercial-1.jpg";
-import projectInterior1 from "@/assets/project-interior-1.jpg";
-import projectResidential2 from "@/assets/project-residential-2.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import hero5 from "@/assets/hero-5.jpg";
 
 const heroImages = [
-  { src: heroImage, alt: "Modern architectural interior with natural light" },
-  { src: projectResidential1, alt: "Luxury residential architecture" },
-  { src: projectCommercial1, alt: "Contemporary commercial building" },
-  { src: projectInterior1, alt: "Elegant interior design" },
-  { src: projectResidential2, alt: "Modern residential project" },
+  { src: hero1, alt: "Modern architectural interior with natural light" },
+  { src: hero2, alt: "Luxury residential architecture" },
+  { src: hero3, alt: "Contemporary commercial building" },
+  { src: hero4, alt: "Elegant interior design" },
+  { src: hero5, alt: "Modern residential project" },
 ];
 
 const HeroSection = () => {
@@ -46,30 +46,14 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              index === currentIndex
-                ? "w-8 bg-accent"
-                : "w-2 bg-primary-foreground/40 hover:bg-primary-foreground/60"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 arch-container w-full">
+      <div className="relative z-10 arch-container w-full px-4 sm:px-6">
         <div className="max-w-3xl">
           {/* Overline */}
           <div className="flex items-center gap-4 mb-6 opacity-0 animate-fade-up">
             <div className="w-12 h-px bg-accent" />
             <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80">
-              Award-Winning Architecture Studio
+              Turning Space Into Soul
             </span>
           </div>
 
@@ -95,12 +79,58 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-primary-foreground/60 opacity-0 animate-fade-up animation-delay-500">
-        <span className="font-sans text-small tracking-architectural uppercase">
-          Scroll to explore
+      {/* Slide Indicators - Better mobile positioning */}
+<div className="absolute bottom-24 md:bottom-16 left-4 md:left-8 flex flex-col gap-2 md:gap-3 z-20">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className="group flex items-center gap-2 md:gap-3 focus:outline-none"
+            aria-label={`Go to slide ${index + 1}`}
+          >
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <div
+                className={`h-0.5 transition-all duration-500 ${
+                  index === currentIndex
+                    ? "w-6 md:w-8 lg:w-10 bg-accent"
+                    : "w-3 md:w-4 lg:w-6 bg-primary-foreground/40 group-hover:w-4 md:group-hover:w-6 lg:group-hover:w-8 group-hover:bg-primary-foreground/60"
+                }`}
+              />
+              <span
+                className={`font-sans text-[10px] md:text-xs lg:text-sm tracking-widest uppercase transition-colors duration-300 ${
+                  index === currentIndex
+                    ? "text-accent opacity-100"
+                    : "text-primary-foreground/40 opacity-0 group-hover:opacity-100"
+                }`}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Slide Counter - Better mobile positioning */}
+      <div className="absolute bottom-24 md:bottom-16 right-4 md:right-8 flex items-center gap-1.5 md:gap-2 z-20">
+        <span className="font-serif text-lg md:text-xl lg:text-2xl text-accent">
+          {String(currentIndex + 1).padStart(2, "0")}
         </span>
-        <ArrowDown className="h-4 w-4 animate-bounce" />
+        <div className="h-5 md:h-6 w-px bg-primary-foreground/30" />
+        <span className="font-sans text-xs md:text-sm lg:text-base text-primary-foreground/60 tracking-widest uppercase">
+          {String(heroImages.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Scroll Indicator - Adjusted for mobile safe area */}
+      <div className="absolute bottom-20 md:bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1.5 md:gap-2 z-20">
+        <div className="flex flex-col items-center gap-1.5 md:gap-2 text-primary-foreground/70 opacity-0 animate-fade-up animation-delay-500">
+          <span className="font-sans text-[10px] md:text-xs lg:text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase">
+            Scroll to explore
+          </span>
+          <div className="relative h-6 md:h-8">
+            <ArrowDown className="h-3 w-3 md:h-4 md:w-4 animate-bounce text-accent" />
+          </div>
+        </div>
       </div>
     </section>
   );

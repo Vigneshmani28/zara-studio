@@ -5,12 +5,11 @@ import Footer from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import { motion, AnimatePresence } from "framer-motion";
-import projectResidential1 from "@/assets/project-residential-1.jpg";
-import projectCommercial1 from "@/assets/project-commercial-1.jpg";
-import projectInterior1 from "@/assets/project-interior-1.jpg";
-import projectResidential2 from "@/assets/project-residential-2.jpg";
-import projectCommercial2 from "@/assets/project-commercial-2.jpg";
-import heroImage from "@/assets/hero-architecture.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets//hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import hero5 from "@/assets/hero-5.jpg";
 
 const categories = ["All", "Residential", "Commercial", "Interior"];
 
@@ -21,7 +20,7 @@ const projects = [
     location: "Malibu, California",
     category: "Residential",
     year: "2023",
-    image: projectResidential1,
+    image: hero1,
     featured: true,
   },
   {
@@ -30,7 +29,7 @@ const projects = [
     location: "Manhattan, New York",
     category: "Commercial",
     year: "2023",
-    image: projectCommercial1,
+    image: hero2,
     featured: false,
   },
   {
@@ -39,7 +38,7 @@ const projects = [
     location: "Miami, Florida",
     category: "Interior",
     year: "2022",
-    image: projectInterior1,
+    image: hero4,
     featured: false,
   },
   {
@@ -48,7 +47,7 @@ const projects = [
     location: "Aspen, Colorado",
     category: "Residential",
     year: "2022",
-    image: projectResidential2,
+    image: hero5,
     featured: false,
   },
   {
@@ -57,7 +56,7 @@ const projects = [
     location: "Chicago, Illinois",
     category: "Commercial",
     year: "2023",
-    image: projectCommercial2,
+    image: hero3,
     featured: true,
   },
   {
@@ -66,7 +65,7 @@ const projects = [
     location: "San Francisco, California",
     category: "Residential",
     year: "2021",
-    image: heroImage,
+    image: hero5,
     featured: false,
   },
 ];
