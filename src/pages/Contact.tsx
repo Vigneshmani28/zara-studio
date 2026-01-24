@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -55,7 +56,7 @@ const Contact = () => {
         {/* Hero */}
         <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
           <div className="arch-container">
-            <div className="max-w-4xl">
+            <ScrollReveal className="max-w-4xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="arch-divider" />
                 <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -68,7 +69,7 @@ const Contact = () => {
               <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Ready to bring your vision to life? We'd love to hear about your project. Fill out the form below or reach out directly.
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -77,73 +78,81 @@ const Contact = () => {
           <div className="arch-container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
               {/* Contact Info */}
-              <div className="lg:col-span-1">
+              <ScrollReveal direction="left" className="lg:col-span-1">
                 <h2 className="font-serif text-heading-lg text-foreground mb-8">
                   Get in Touch
                 </h2>
 
-                <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-sans text-body font-medium text-foreground mb-1">
-                        Studio Address
-                      </h3>
-                      <p className="text-body text-muted-foreground">
-                        42 Architecture Lane<br />
-                        Design District<br />
-                        New York, NY 10001
-                      </p>
+                <StaggerContainer className="space-y-8" staggerDelay={0.1}>
+                  <StaggerItem>
+                    <div className="flex items-start gap-4">
+                      <MapPin className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-sans text-body font-medium text-foreground mb-1">
+                          Studio Address
+                        </h3>
+                        <p className="text-body text-muted-foreground">
+                          42 Architecture Lane<br />
+                          Design District<br />
+                          New York, NY 10001
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </StaggerItem>
 
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-sans text-body font-medium text-foreground mb-1">
-                        Phone
-                      </h3>
-                      <a
-                        href="tel:+12345678900"
-                        className="text-body text-muted-foreground hover:text-accent transition-colors"
-                      >
-                        +1 (234) 567-8900
-                      </a>
+                  <StaggerItem>
+                    <div className="flex items-start gap-4">
+                      <Phone className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-sans text-body font-medium text-foreground mb-1">
+                          Phone
+                        </h3>
+                        <a
+                          href="tel:+12345678900"
+                          className="text-body text-muted-foreground hover:text-accent transition-colors"
+                        >
+                          +1 (234) 567-8900
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  </StaggerItem>
 
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-sans text-body font-medium text-foreground mb-1">
-                        Email
-                      </h3>
-                      <a
-                        href="mailto:hello@zaraarchitects.com"
-                        className="text-body text-muted-foreground hover:text-accent transition-colors"
-                      >
-                        hello@zaraarchitects.com
-                      </a>
+                  <StaggerItem>
+                    <div className="flex items-start gap-4">
+                      <Mail className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-sans text-body font-medium text-foreground mb-1">
+                          Email
+                        </h3>
+                        <a
+                          href="mailto:hello@zaraarchitects.com"
+                          className="text-body text-muted-foreground hover:text-accent transition-colors"
+                        >
+                          hello@zaraarchitects.com
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  </StaggerItem>
 
-                  <div className="flex items-start gap-4">
-                    <Clock className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-sans text-body font-medium text-foreground mb-1">
-                        Studio Hours
-                      </h3>
-                      <p className="text-body text-muted-foreground">
-                        Monday – Friday: 9am – 6pm<br />
-                        Saturday: By appointment
-                      </p>
+                  <StaggerItem>
+                    <div className="flex items-start gap-4">
+                      <Clock className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-sans text-body font-medium text-foreground mb-1">
+                          Studio Hours
+                        </h3>
+                        <p className="text-body text-muted-foreground">
+                          Monday – Friday: 9am – 6pm<br />
+                          Saturday: By appointment
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </StaggerItem>
+                </StaggerContainer>
+              </ScrollReveal>
 
               {/* Contact Form */}
-              <div className="lg:col-span-2">
+              <ScrollReveal direction="right" delay={0.2} className="lg:col-span-2">
                 <div className="bg-background p-8 md:p-12 border border-border">
                   <h2 className="font-serif text-heading-lg text-foreground mb-8">
                     Project Inquiry
@@ -279,25 +288,27 @@ const Contact = () => {
                     </Button>
                   </form>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
         {/* Map placeholder */}
-        <section className="h-96 bg-muted relative">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="h-12 w-12 text-accent mx-auto mb-4" />
-              <p className="font-serif text-heading text-foreground">
-                42 Architecture Lane, New York
-              </p>
-              <p className="text-body text-muted-foreground mt-2">
-                Interactive map coming soon
-              </p>
+        <ScrollReveal direction="up">
+          <section className="h-96 bg-muted relative">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="h-12 w-12 text-accent mx-auto mb-4" />
+                <p className="font-serif text-heading text-foreground">
+                  42 Architecture Lane, New York
+                </p>
+                <p className="text-body text-muted-foreground mt-2">
+                  Interactive map coming soon
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
       </main>
       <Footer />
     </div>

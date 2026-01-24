@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import studioImage from "@/assets/studio-workspace.jpg";
 
 const CTASection = () => {
@@ -16,7 +17,7 @@ const CTASection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 arch-container text-center">
+      <ScrollReveal className="relative z-10 arch-container text-center">
         <h2 className="font-serif text-display md:text-display-lg text-primary-foreground mb-6">
           Let's Design Your Dream Space
         </h2>
@@ -31,7 +32,7 @@ const CTASection = () => {
             <Link to="/projects">Explore Our Work</Link>
           </Button>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

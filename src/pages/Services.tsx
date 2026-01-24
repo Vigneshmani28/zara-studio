@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 
 const services = [
   {
@@ -118,7 +119,7 @@ const Services = () => {
         {/* Hero */}
         <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
           <div className="arch-container">
-            <div className="max-w-4xl">
+            <ScrollReveal className="max-w-4xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="arch-divider" />
                 <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
@@ -131,7 +132,7 @@ const Services = () => {
               <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
                 From initial concept to final completion, we offer end-to-end architectural and design services that transform your vision into spaces that inspire and endure.
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -140,49 +141,53 @@ const Services = () => {
           <div className="arch-container">
             <div className="space-y-24">
               {services.map((service, index) => (
-                <div
+                <ScrollReveal
                   key={service.id}
-                  id={service.id}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
+                  delay={0.1}
                 >
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <span className="font-sans text-caption tracking-architectural text-accent block mb-4">
-                      {service.number}
-                    </span>
-                    <h2 className="font-serif text-display text-foreground mb-2">
-                      {service.title}
-                    </h2>
-                    <p className="font-serif text-heading text-accent mb-6">
-                      {service.subtitle}
-                    </p>
-                    <p className="text-body-lg text-muted-foreground leading-relaxed mb-8">
-                      {service.description}
-                    </p>
-                    <Button variant="minimal" asChild className="group">
-                      <Link to="/contact">
-                        Discuss Your Project
-                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </Button>
+                  <div
+                    id={service.id}
+                    className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start ${
+                      index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                      <span className="font-sans text-caption tracking-architectural text-accent block mb-4">
+                        {service.number}
+                      </span>
+                      <h2 className="font-serif text-display text-foreground mb-2">
+                        {service.title}
+                      </h2>
+                      <p className="font-serif text-heading text-accent mb-6">
+                        {service.subtitle}
+                      </p>
+                      <p className="text-body-lg text-muted-foreground leading-relaxed mb-8">
+                        {service.description}
+                      </p>
+                      <Button variant="minimal" asChild className="group">
+                        <Link to="/contact">
+                          Discuss Your Project
+                          <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </div>
+                    <div className={`bg-background p-8 md:p-10 border border-border ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                      <h3 className="font-serif text-heading text-foreground mb-6">
+                        What We Offer
+                      </h3>
+                      <ul className="space-y-4">
+                        {service.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-3">
+                            <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                            <span className="text-body text-muted-foreground">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className={`bg-background p-8 md:p-10 border border-border ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <h3 className="font-serif text-heading text-foreground mb-6">
-                      What We Offer
-                    </h3>
-                    <ul className="space-y-4">
-                      {service.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3">
-                          <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                          <span className="text-body text-muted-foreground">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -191,7 +196,7 @@ const Services = () => {
         {/* Process */}
         <section className="section-padding bg-primary text-primary-foreground">
           <div className="arch-container">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-12 h-px bg-accent" />
                 <span className="font-sans text-small tracking-architectural uppercase opacity-80">
@@ -202,28 +207,30 @@ const Services = () => {
               <h2 className="font-serif text-display">
                 How We Work
               </h2>
-            </div>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-5 gap-8" staggerDelay={0.1}>
               {processSteps.map((step, index) => (
-                <div key={step.number} className="relative">
-                  <span className="font-serif text-display-lg text-accent/30 block mb-4">
-                    {step.number}
-                  </span>
-                  <h3 className="font-serif text-heading mb-3">{step.title}</h3>
-                  <p className="text-body opacity-80">{step.description}</p>
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-full w-full h-px bg-primary-foreground/20" />
-                  )}
-                </div>
+                <StaggerItem key={step.number}>
+                  <div className="relative">
+                    <span className="font-serif text-display-lg text-accent/30 block mb-4">
+                      {step.number}
+                    </span>
+                    <h3 className="font-serif text-heading mb-3">{step.title}</h3>
+                    <p className="text-body opacity-80">{step.description}</p>
+                    {index < processSteps.length - 1 && (
+                      <div className="hidden md:block absolute top-8 left-full w-full h-px bg-primary-foreground/20" />
+                    )}
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* CTA */}
         <section className="section-padding bg-background">
-          <div className="arch-container text-center">
+          <ScrollReveal className="arch-container text-center">
             <h2 className="font-serif text-display text-foreground mb-6">
               Let's Create Something Extraordinary
             </h2>
@@ -233,7 +240,7 @@ const Services = () => {
             <Button variant="hero" size="xl" asChild>
               <Link to="/contact">Schedule a Consultation</Link>
             </Button>
-          </div>
+          </ScrollReveal>
         </section>
       </main>
       <Footer />
