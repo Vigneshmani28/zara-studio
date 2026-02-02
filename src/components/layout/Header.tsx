@@ -3,14 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logoLight from "@/assets/logo.png";
-import logoDark from "@/assets/logo.png";
+import logoLight from "@/assets/logo.png"; // You'll need a light version
+import logoDark from "@/assets/logo.png"; // You'll need a dark version
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Projects", path: "/projects" },
+  // { name: "Projects", path: "/projects" },
+  { name: "Our Team", path: "/our-team" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -21,7 +22,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -30,6 +31,10 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  // Determine if hero section has light content
+  const isHomePage = location.pathname === "/";
+  const useDarkHeader = isScrolled || !isHomePage || isMobileMenuOpen;
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -51,9 +56,9 @@ const Header = () => {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-sm py-4"
-            : "bg-transparent py-6",
+          useDarkHeader
+            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm py-4"
+            : "bg-gradient-to-b from-black/20 to-transparent py-6",
         )}
       >
         <div className="arch-container">
@@ -61,9 +66,9 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <img
-                src={isScrolled ? logoDark : logoLight}
+                src={useDarkHeader ? logoDark : logoLight}
                 alt="Zara Architects"
-                className="h-20 lg:h-20 w-auto transition-all duration-300"
+                className="h-16 lg:h-18 w-auto transition-all duration-300"
               />
             </Link>
 
@@ -74,20 +79,41 @@ const Header = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    "arch-link font-sans text-caption tracking-wide uppercase transition-colors",
-                    location.pathname === link.path
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground",
+                    "arch-link font-sans text-caption tracking-wide uppercase transition-colors relative group",
+                    useDarkHeader
+                      ? location.pathname === link.path
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      : location.pathname === link.path
+                      ? "text-white"
+                      : "text-white/80 hover:text-white",
                   )}
                 >
                   {link.name}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full",
+                      useDarkHeader
+                        ? "bg-gray-900 dark:bg-white"
+                        : "bg-white",
+                      location.pathname === link.path && "w-full"
+                    )}
+                  />
                 </Link>
               ))}
             </div>
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button variant="hero" size="lg" asChild>
+              <Button 
+                variant={useDarkHeader ? "default" : "outline"} 
+                size="lg" 
+                asChild
+                className={cn(
+                  "transition-all duration-300 rounded-lg",
+                  !useDarkHeader && "bg-transparent text-white border-white hover:bg-white/10"
+                )}
+              >
                 <Link to="/contact">Book Consultation</Link>
               </Button>
             </div>
@@ -99,7 +125,13 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               {!isMobileMenuOpen && (
-                <Menu className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+                <Menu 
+                  className={`h-6 w-6 transition-colors ${
+                    useDarkHeader 
+                      ? "text-gray-900 dark:text-white" 
+                      : "text-white"
+                  }`} 
+                />
               )}
             </button>
           </nav>

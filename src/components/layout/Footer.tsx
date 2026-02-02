@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
-import logoDark from "@/assets/logo.png";
+import logo from "@/assets/logo/logo.png";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
               <img
-                src={logoDark}
+                src={logo}
                 alt="Zara Architects"
                 className="h-16 w-auto"
               />

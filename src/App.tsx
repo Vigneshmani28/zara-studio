@@ -10,6 +10,9 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import OurTeam from "./pages/OurTeam";
+import { useEffect } from "react";
+import ScrollToTopButton from "./components/ui/scroll-to-top";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +47,16 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   </motion.div>
 );
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -53,7 +66,8 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageWrapper><Index /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-        <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
+        <Route path="/our-team" element={<PageWrapper><OurTeam /></PageWrapper>} />
+        {/* <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} /> */}
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
@@ -67,7 +81,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <ScrollToTop />
         <AnimatedRoutes />
+        <ScrollToTopButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

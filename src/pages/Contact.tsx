@@ -295,20 +295,50 @@ const Contact = () => {
 
         {/* Map placeholder */}
         <ScrollReveal direction="up">
-          <section className="h-96 bg-muted relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-accent mx-auto mb-4" />
-                <p className="font-serif text-heading text-foreground">
-                  42 Architecture Lane, New York
-                </p>
-                <p className="text-body text-muted-foreground mt-2">
-                  Interactive map coming soon
-                </p>
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
+  <section className="h-96 relative">
+    <div className="absolute inset-0 z-0">
+      {/* Google Maps Embed */}
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059445135!2d-74.25986613799748!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Zara Architects Location"
+        className="absolute inset-0"
+      />
+    </div>
+    
+    {/* Overlay with address info */}
+    <div className="absolute bottom-6 left-6 right-6 z-10">
+      <div className="bg-background/90 backdrop-blur-sm border border-border rounded-xl p-6 max-w-md">
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+            <MapPin className="h-6 w-6 text-accent" />
+          </div>
+          <div>
+            <h3 className="font-serif text-heading-lg text-foreground mb-1">
+              Visit Our Studio
+            </h3>
+            <p className="font-sans text-sm text-muted-foreground mb-2">
+              42 Architecture Lane, New York, NY 10001
+            </p>
+            <a
+              href="https://maps.google.com/?q=42+Architecture+Lane+New+York+NY+10001"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 transition-colors"
+            >
+              Get Directions →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ScrollReveal>
       </main>
       <Footer />
     </div>

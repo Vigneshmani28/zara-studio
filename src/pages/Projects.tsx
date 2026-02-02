@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { motion, AnimatePresence } from "framer-motion";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets//hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-import hero5 from "@/assets/hero-5.jpg";
+import hero1 from "@/assets/hero-1.webp";
+import hero2 from "@/assets/hero-2.webp";
+import hero3 from "@/assets/hero-3.webp";
+import hero4 from "@/assets/hero-4.webp";
+import hero5 from "@/assets/hero-5.webp";
+import { useMemo } from "react";
 
 const categories = ["All", "Residential", "Commercial", "Interior"];
 
@@ -21,7 +22,6 @@ const projects = [
     category: "Residential",
     year: "2023",
     image: hero1,
-    featured: true,
   },
   {
     id: 2,
@@ -30,7 +30,6 @@ const projects = [
     category: "Commercial",
     year: "2023",
     image: hero2,
-    featured: false,
   },
   {
     id: 3,
@@ -39,7 +38,6 @@ const projects = [
     category: "Interior",
     year: "2022",
     image: hero4,
-    featured: false,
   },
   {
     id: 4,
@@ -48,7 +46,6 @@ const projects = [
     category: "Residential",
     year: "2022",
     image: hero5,
-    featured: false,
   },
   {
     id: 5,
@@ -57,7 +54,6 @@ const projects = [
     category: "Commercial",
     year: "2023",
     image: hero3,
-    featured: true,
   },
   {
     id: 6,
@@ -66,24 +62,40 @@ const projects = [
     category: "Residential",
     year: "2021",
     image: hero5,
-    featured: false,
+  },
+  {
+    id: 7,
+    title: "Urban Loft Residence",
+    location: "Seattle, Washington",
+    category: "Residential",
+    year: "2023",
+    image: hero1,
+  },
+  {
+    id: 8,
+    title: "Tech Campus Hub",
+    location: "Austin, Texas",
+    category: "Commercial",
+    year: "2023",
+    image: hero2,
   },
 ];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredProjects =
-    activeCategory === "All"
+  const filteredProjects = useMemo(() => {
+    return activeCategory === "All"
       ? projects
       : projects.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <div className="min-h-screen">
       <Header />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-background">
+        <section className="pt-32 pb-12 bg-background">
           <div className="arch-container">
             <ScrollReveal className="max-w-4xl">
               <div className="flex items-center gap-4 mb-6">
@@ -96,7 +108,9 @@ const Projects = () => {
                 Selected Projects
               </h1>
               <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Explore our portfolio of residential, commercial, and interior design projects that showcase our commitment to exceptional design.
+                Explore our portfolio of residential, commercial, and interior
+                design projects that showcase our commitment to exceptional
+                design.
               </p>
             </ScrollReveal>
           </div>
@@ -105,7 +119,7 @@ const Projects = () => {
         {/* Filters */}
         <section className="py-8 bg-background border-b border-border">
           <div className="arch-container">
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-2 md:gap-4">
               {categories.map((category) => (
                 <motion.button
                   key={category}
@@ -113,10 +127,10 @@ const Projects = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={cn(
-                    "font-sans text-caption tracking-wide uppercase px-4 py-2 transition-colors border",
+                    "font-sans text-sm md:text-caption tracking-wide uppercase px-3 md:px-4 py-2 transition-colors border rounded-full",
                     activeCategory === category
                       ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-foreground"
+                      : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-foreground",
                   )}
                 >
                   {category}
@@ -126,65 +140,64 @@ const Projects = () => {
           </div>
         </section>
 
-        {/* Projects Grid */}
-        <section className="section-padding bg-background">
-          <div className="arch-container">
-            <motion.div 
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        {/* Projects Grid - Equal Size Boxes */}
+        <section className="p-4 bg-background">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
             >
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence>
                 {filteredProjects.map((project) => (
                   <motion.div
                     key={project.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-                    className={cn(
-                      project.featured ? "md:col-span-2 md:row-span-2" : ""
-                    )}
+                    className="aspect-square group"
                   >
                     <Link
                       to={`/projects/${project.id}`}
-                      className="project-card image-zoom group block relative h-full"
+                      className="project-card image-zoom group block relative w-full h-full overflow-hidden bg-muted"
                     >
-                      <div
-                        className={cn(
-                          "relative overflow-hidden bg-muted h-full",
-                          project.featured
-                            ? "aspect-[16/10] md:aspect-[16/9]"
-                            : "aspect-[4/5]"
-                        )}
-                      >
+                      {/* Image Container */}
+                      <div className="relative w-full h-full overflow-hidden">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                         />
-                        <div className="project-overlay" />
 
-                        {/* Content Overlay */}
-                        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                          <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                              {project.category} · {project.location} · {project.year}
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* Hover Overlay Content */}
+                        <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                          <div className="space-y-2">
+                            <span className="font-sans text-xs md:text-small tracking-architectural uppercase text-white/80 block">
+                              {project.category} · {project.year}
                             </span>
-                            <h3 className="font-serif text-heading-lg md:text-heading-xl text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 className="font-serif text-lg md:text-heading text-white">
                               {project.title}
                             </h3>
+                            <p className="font-sans text-xs md:text-small text-white/70">
+                              {project.location}
+                            </p>
                           </div>
                         </div>
 
-                        {/* Always visible on mobile */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/80 to-transparent group-hover:opacity-0 transition-opacity duration-500 pointer-events-none md:opacity-0 md:group-hover:opacity-0">
-                          <span className="font-sans text-small tracking-architectural uppercase text-primary-foreground/80 mb-1 block">
+                        {/* Always Visible Corner Label */}
+                        <div className="absolute top-0 left-0 p-3 md:p-4">
+                          <span className="inline-block font-sans text-xs md:text-small tracking-architectural uppercase text-white bg-black/50 backdrop-blur-sm px-2 py-1 rounded-sm">
                             {project.category}
                           </span>
-                          <h3 className="font-serif text-heading text-primary-foreground">
-                            {project.title}
-                          </h3>
                         </div>
                       </div>
                     </Link>
@@ -192,6 +205,19 @@ const Projects = () => {
                 ))}
               </AnimatePresence>
             </motion.div>
+
+            {/* No Results State */}
+            {filteredProjects.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full text-center py-16"
+              >
+                <p className="font-sans text-body-lg text-muted-foreground">
+                  No projects found in this category.
+                </p>
+              </motion.div>
+            )}
           </div>
         </section>
       </main>

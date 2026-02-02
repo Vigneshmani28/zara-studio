@@ -292,3 +292,21 @@
     animation-delay: 600ms;
   }
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+

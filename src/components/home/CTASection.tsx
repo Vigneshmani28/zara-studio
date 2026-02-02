@@ -35,39 +35,36 @@ const CTASection = () => {
 
         {/* Subheading */}
         <p className="text-lg text-primary-foreground/90 mb-10 max-w-2xl mx-auto">
-          Let's work together to create something extraordinary. 
-          Schedule a consultation with our team today.
+          Let's work together to create something extraordinary. Schedule a
+          consultation with our team today.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            variant="default" 
+          <Button
+            variant="default"
             size="lg"
             className="bg-accent hover:bg-accent/90 px-8 py-6"
             asChild
           >
-            <Link to="/contact">
-              Book a Consultation
-            </Link>
+            <Link to="/contact">Book a Consultation</Link>
           </Button>
-          
-          <Button 
+
+          <Button
             variant="outline"
             size="lg"
             className="border-primary-foreground  hover:bg-white/10 px-8 py-6"
             asChild
           >
-            <Link to="/projects">
-              View Our Work
-            </Link>
+            <Link to="/services">View Our Work</Link>
           </Button>
         </div>
 
         {/* Simple Info */}
         <div className="mt-12 pt-6 border-t border-primary-foreground/20">
           <p className="text-sm text-primary-foreground/70">
-            Free initial consultation • Worldwide projects • Award-winning team
+            Budget clarity from day one • Practical design solutions • Hands-on
+            execution • Client-first approach
           </p>
         </div>
       </ScrollReveal>

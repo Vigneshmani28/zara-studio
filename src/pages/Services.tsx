@@ -2,112 +2,108 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Circle, Users, Target, Lightbulb, Palette, HardHat, MessageSquare, Home, Building, Layout, DollarSign, Compass } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 
-const services = [
+const expertise = [
   {
-    id: "architecture",
-    number: "01",
-    title: "Architecture Design",
-    subtitle: "From Vision to Reality",
-    description:
-      "Our architectural design services encompass the full spectrum of building creation—from initial concept development through construction documentation. We work closely with clients to understand their needs, site conditions, and aspirations, translating these into designs that are both innovative and buildable.",
-    features: [
-      "Concept Development & Feasibility Studies",
-      "Schematic Design & Design Development",
-      "Construction Documents & Specifications",
-      "Permit Coordination & Regulatory Compliance",
-      "Construction Administration & Site Visits",
-    ],
+    icon: <Compass className="h-5 w-5" />,
+    title: "Architectural Design",
+    description: "Elevations & exterior expression with careful consideration of function and form.",
+    details: "Works at the intersection of interior design and architectural thinking for cohesive solutions.",
   },
   {
-    id: "interior",
-    number: "02",
-    title: "Interior Design",
-    subtitle: "Spaces That Inspire",
-    description:
-      "Our interior design practice creates cohesive environments that reflect our clients' personalities and enhance their daily experiences. We carefully consider every detail—from spatial planning and material selection to furniture specification and lighting design.",
-    features: [
-      "Space Planning & Programming",
-      "Material & Finish Selection",
-      "Custom Furniture & Millwork Design",
-      "Lighting Design & Specification",
-      "Art Curation & Styling",
-    ],
+    icon: <Home className="h-5 w-5" />,
+    title: "Residential Interiors",
+    description: "Creating comfortable, functional homes that reflect your lifestyle.",
+    details: "From individual homes to apartments, each space designed for everyday living.",
   },
   {
-    id: "residential",
-    number: "03",
-    title: "Residential Projects",
-    subtitle: "Homes That Transform Lives",
-    description:
-      "From intimate urban apartments to expansive country estates, our residential practice creates homes that are deeply personal expressions of how our clients want to live. We approach each home as a unique opportunity to craft spaces that nurture, inspire, and endure.",
-    features: [
-      "Single-Family Residences & Estates",
-      "Luxury Apartments & Penthouses",
-      "Vacation Homes & Retreats",
-      "Renovations & Historic Restorations",
-      "Multi-Family Residential Developments",
-    ],
+    icon: <Building className="h-5 w-5" />,
+    title: "Commercial Interiors",
+    description: "Designing workspaces that support productivity and brand identity.",
+    details: "Commercial spaces that balance professionalism with human-centered design.",
   },
   {
-    id: "commercial",
-    number: "04",
-    title: "Commercial Projects",
-    subtitle: "Spaces That Drive Success",
-    description:
-      "Our commercial practice understands that great design drives business success. We create workplaces that attract talent, retail environments that enhance brands, and hospitality spaces that create memorable experiences.",
-    features: [
-      "Corporate Offices & Headquarters",
-      "Retail Spaces & Flagship Stores",
-      "Hotels & Hospitality",
-      "Restaurants & Entertainment Venues",
-      "Mixed-Use Developments",
-    ],
+    icon: <Layout className="h-5 w-5" />,
+    title: "Space Planning",
+    description: "Optimizing layouts for efficiency, flow, and practical everyday use.",
+    details: "Studying proportions, light, ventilation, and movement for natural design responses.",
   },
   {
-    id: "landscape",
-    number: "05",
-    title: "Landscape Design",
-    subtitle: "Connecting Architecture to Nature",
-    description:
-      "We believe the landscape is an extension of architecture. Our landscape design services create outdoor environments that complement and enhance built structures while respecting the natural character of each site.",
-    features: [
-      "Site Planning & Master Planning",
-      "Garden & Courtyard Design",
-      "Outdoor Living Spaces",
-      "Sustainable Landscape Strategies",
-      "Hardscape & Planting Design",
-    ],
+    icon: <DollarSign className="h-5 w-5" />,
+    title: "Budget-Oriented Design",
+    description: "Transparent cost management and responsible financial planning.",
+    details: "Budget as a design guide, not a limitation—creating realistic, achievable interiors.",
+  },
+  {
+    icon: <Palette className="h-5 w-5" />,
+    title: "Material Selection",
+    description: "Curating finishes that balance aesthetics, durability, and comfort.",
+    details: "Selecting materials based on use, durability, and long-term maintenance.",
+  },
+  {
+    icon: <HardHat className="h-5 w-5" />,
+    title: "Execution Coordination",
+    description: "Hands-on site involvement ensuring quality and adherence to design.",
+    details: "Regular site involvement to translate planned intent accurately during execution.",
+  },
+  {
+    icon: <MessageSquare className="h-5 w-5" />,
+    title: "Client Guidance",
+    description: "Clear communication and collaborative decision-making throughout.",
+    details: "Transparent collaboration ensuring shared understanding at every stage.",
   },
 ];
 
 const processSteps = [
   {
     number: "01",
-    title: "Discovery",
-    description: "We begin with deep listening—understanding your vision, needs, and the unique context of your project.",
+    title: "Understanding Everyday Living",
+    description: "We begin by understanding how our clients live, work, and move through their spaces. Lifestyle, routines, and practical needs form the foundation of every design decision.",
+    icon: <Users className="h-6 w-6" />,
   },
   {
     number: "02",
-    title: "Concept Design",
-    description: "Our team develops initial concepts that explore different approaches to achieving your goals.",
+    title: "Space Sensitivity",
+    description: "Each space has its own constraints and possibilities. We study proportions, light, ventilation, and movement to ensure the design responds naturally to the given space.",
+    icon: <Target className="h-6 w-6" />,
   },
   {
     number: "03",
-    title: "Design Development",
-    description: "The chosen concept is refined and detailed, with material selections and technical coordination.",
+    title: "Budget Clarity",
+    description: "Budget is not treated as a limitation, but as a design guide. Clear cost planning from the beginning allows us to create interiors that are realistic and stress-free.",
+    icon: <DollarSign className="h-6 w-6" />,
   },
   {
     number: "04",
-    title: "Documentation",
-    description: "We prepare comprehensive construction documents that translate design intent into buildable reality.",
+    title: "Functional Design Thinking",
+    description: "Aesthetic choices are always supported by function. Storage, usability, maintenance, and longevity are carefully considered for spaces that work well beyond first impression.",
+    icon: <Lightbulb className="h-6 w-6" />,
   },
   {
     number: "05",
-    title: "Construction",
-    description: "Our team remains involved through construction, ensuring the design vision is faithfully executed.",
+    title: "Material & Detail Awareness",
+    description: "We select materials and finishes based on use, durability, and comfort. Every detail—visible or hidden—is approached with responsibility and intent.",
+    icon: <Palette className="h-6 w-6" />,
+  },
+  {
+    number: "06",
+    title: "Execution with Involvement",
+    description: "Design does not end on paper. Regular site involvement ensures that the planned intent is translated accurately during execution, maintaining quality and consistency.",
+    icon: <HardHat className="h-6 w-6" />,
+  },
+  {
+    number: "07",
+    title: "Transparent Collaboration",
+    description: "We believe good interiors come from open communication. Clients are guided through each stage with clarity, ensuring shared understanding and informed decisions.",
+    icon: <MessageSquare className="h-6 w-6" />,
+  },
+  {
+    number: "08",
+    title: "Meaningful Outcomes",
+    description: "The goal is not just a finished interior, but a space that feels right—comfortable, functional, and quietly supportive of everyday life.",
+    icon: <Check className="h-6 w-6" />,
   },
 ];
 
@@ -123,124 +119,208 @@ const Services = () => {
               <div className="flex items-center gap-4 mb-6">
                 <div className="arch-divider" />
                 <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
-                  Our Services
+                  Our Expertise
                 </span>
               </div>
               <h1 className="font-serif text-display-lg text-foreground mb-8">
-                Comprehensive Design Excellence
+                Designing with Intention & Intelligence
               </h1>
-              <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
-                From initial concept to final completion, we offer end-to-end architectural and design services that transform your vision into spaces that inspire and endure.
+              <p className="text-body-xl text-muted-foreground max-w-3xl leading-relaxed">
+                Zara Architects works at the intersection of interior design and architectural thinking, offering carefully considered solutions that balance function, clarity, and buildability. Our expertise lies in shaping spaces from early planning through detailed execution.
               </p>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Services List */}
+        {/* Expertise Grid */}
         <section className="section-padding bg-secondary/30">
           <div className="arch-container">
-            <div className="space-y-24">
-              {services.map((service, index) => (
-                <ScrollReveal
-                  key={service.id}
-                  delay={0.1}
-                >
-                  <div
-                    id={service.id}
-                    className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start ${
-                      index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                    }`}
-                  >
-                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                      <span className="font-sans text-caption tracking-architectural text-accent block mb-4">
-                        {service.number}
-                      </span>
-                      <h2 className="font-serif text-display text-foreground mb-2">
-                        {service.title}
-                      </h2>
-                      <p className="font-serif text-heading text-accent mb-6">
-                        {service.subtitle}
-                      </p>
-                      <p className="text-body-lg text-muted-foreground leading-relaxed mb-8">
-                        {service.description}
-                      </p>
-                      <Button variant="minimal" asChild className="group">
-                        <Link to="/contact">
-                          Discuss Your Project
-                          <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </Button>
-                    </div>
-                    <div className={`bg-background p-8 md:p-10 border border-border ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <h3 className="font-serif text-heading text-foreground mb-6">
-                        What We Offer
-                      </h3>
-                      <ul className="space-y-4">
-                        {service.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-3">
-                            <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                            <span className="text-body text-muted-foreground">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
+              <ScrollReveal direction="left">
+                <div className="sticky top-24">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="arch-divider w-16" />
+                    <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
+                      What We Do
+                    </span>
+                  </div>
+                  <h2 className="font-serif text-display-2xl text-foreground mb-6">
+                    Comprehensive Design Expertise
+                  </h2>
+                  <p className="text-body-lg text-muted-foreground mb-10 leading-relaxed">
+                    Guided by practicality and responsibility, we offer solutions that are both beautiful and buildable. Our approach ensures every project balances aesthetics with long-term usability.
+                  </p>
+                  <div className="p-6 bg-accent/5 border border-accent/20 rounded-xl">
+                    <p className="font-serif text-heading-lg text-foreground mb-2">Always guided by</p>
+                    <div className="flex flex-wrap gap-3">
+                      {["Practicality", "Responsibility", "Function", "Clarity", "Buildability"].map((item) => (
+                        <span key={item} className="px-3 py-1 bg-background border border-border rounded-full text-sm font-sans text-foreground">
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </ScrollReveal>
-              ))}
+                </div>
+              </ScrollReveal>
+
+              <div className="lg:col-span-1">
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6" staggerDelay={0.05}>
+                  {expertise.map((item, index) => (
+                    <StaggerItem key={item.title}>
+                      <div className="group bg-background border border-border rounded-xl p-6 hover:border-accent/50 hover:shadow-lg transition-all duration-300 h-full">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-lg bg-secondary/50 border border-border flex items-center justify-center group-hover:bg-accent/10 group-hover:border-accent/30 transition-all duration-300 shrink-0">
+                            <div className="text-foreground group-hover:text-accent transition-colors duration-300">
+                              {item.icon}
+                            </div>
+                          </div>
+                          <div>
+                            <h3 className="font-serif text-heading-lg text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
+                              {item.title}
+                            </h3>
+                            <p className="text-body text-muted-foreground mb-2">{item.description}</p>
+                            <p className="text-body-sm text-muted-foreground/70">{item.details}</p>
+                          </div>
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-border/50 group-hover:border-accent/30 transition-colors duration-300">
+                          <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">
+                            0{index + 1} / Expertise
+                          </span>
+                        </div>
+                      </div>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
             </div>
+
+            {/* Divider */}
+            <ScrollReveal>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-border"></div>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
-        {/* Process */}
-        <section className="section-padding bg-primary text-primary-foreground">
+        {/* Our Process */}
+        <section id="process" className="section-padding bg-gradient-to-b from-background/30 to-background">
           <div className="arch-container">
-            <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
+            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-12 h-px bg-accent" />
-                <span className="font-sans text-small tracking-architectural uppercase opacity-80">
-                  Our Process
+                <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
+                  Our Methodology
                 </span>
                 <div className="w-12 h-px bg-accent" />
               </div>
-              <h2 className="font-serif text-display">
-                How We Work
+              <h2 className="font-serif text-display-2xl text-foreground mb-8">
+                The Zara Architects Process
               </h2>
+              <p className="text-body-xl text-muted-foreground leading-relaxed">
+                Every interior project begins with listening and evolves through clarity, care, and collaboration. Our process is a thoughtful cycle that keeps the client, the space, and the budget in constant balance.
+              </p>
             </ScrollReveal>
 
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-5 gap-8" staggerDelay={0.1}>
+            <StaggerContainer className="relative" staggerDelay={0.1}>
+              {/* Timeline Line */}
+              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border transform -translate-x-1/2" />
+              
               {processSteps.map((step, index) => (
                 <StaggerItem key={step.number}>
-                  <div className="relative">
-                    <span className="font-serif text-display-lg text-accent/30 block mb-4">
-                      {step.number}
-                    </span>
-                    <h3 className="font-serif text-heading mb-3">{step.title}</h3>
-                    <p className="text-body opacity-80">{step.description}</p>
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden md:block absolute top-8 left-full w-full h-px bg-primary-foreground/20" />
-                    )}
+                  <div className={`relative flex flex-col lg:flex-row items-center mb-16 lg:mb-24 ${
+                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  }`}>
+                    {/* Content */}
+                    <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
+                      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                            {step.icon}
+                          </div>
+                          <div>
+                            <span className="font-sans text-xs uppercase tracking-widest text-accent">
+                              Step {step.number}
+                            </span>
+                            <h3 className="font-serif text-heading-xl text-foreground">{step.title}</h3>
+                          </div>
+                        </div>
+                        <p className="text-body-lg text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Timeline Circle */}
+                    <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-16 h-16 items-center justify-center">
+                      <div className="w-6 h-6 rounded-full bg-accent border-4 border-background" />
+                    </div>
+
+                    {/* Number */}
+                    <div className={`lg:hidden mt-6 mb-4`}>
+                      <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                        <span className="font-serif text-heading-lg text-accent">
+                          {step.number}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </StaggerItem>
               ))}
             </StaggerContainer>
+
+            {/* Process Summary */}
+            <ScrollReveal delay={0.5}>
+              <div className="max-w-4xl mx-auto mt-24">
+                <div className="bg-accent/5 border border-accent/20 rounded-2xl p-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <h3 className="font-serif text-display text-foreground mb-6">
+                        Not Linear, but Thoughtful
+                      </h3>
+                      <p className="text-body-xl text-muted-foreground leading-relaxed">
+                        Our process adapts to each project's unique needs while maintaining our core principles of clarity, care, and collaboration at every stage.
+                      </p>
+                    </div>
+                    <div className="lg:text-right">
+                      <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10">
+                        <Link to="/contact" className="flex items-center gap-2">
+                          Start Your Project
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="section-padding bg-background">
-          <ScrollReveal className="arch-container text-center">
-            <h2 className="font-serif text-display text-foreground mb-6">
-              Let's Create Something Extraordinary
-            </h2>
-            <p className="text-body-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-              Every great project begins with a conversation. Tell us about your vision.
-            </p>
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">Schedule a Consultation</Link>
-            </Button>
-          </ScrollReveal>
+        <section className="bg-background mb-10">
+          <div className="arch-container">
+            <div className="max-w-3xl mx-auto text-center">
+              <ScrollReveal>
+                <h2 className="text-display-2xl text-foreground mb-8">
+                  Ready to Create Meaningful Spaces?
+                </h2>
+                <p className="text-body-xl text-muted-foreground mb-10 leading-relaxed">
+                  Let's discuss how we can help shape spaces that are not just beautiful, but deeply supportive of how you live and work.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button asChild size="lg" variant="hero">
+                    <Link to="/contact" className="flex items-center gap-2">
+                      Schedule a Consultation
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

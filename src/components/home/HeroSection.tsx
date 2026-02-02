@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-import hero5 from "@/assets/hero-5.jpg";
+import hero1 from "@/assets/hero-1.webp";
+import hero2 from "@/assets/hero-2.webp";
+import hero3 from "@/assets/hero-3.webp";
+import hero4 from "@/assets/hero-4.webp";
+import hero5 from "@/assets/hero-5.webp";
 
 const heroImages = [
   { src: hero1, alt: "Modern architectural interior with natural light" },
@@ -64,13 +64,14 @@ const HeroSection = () => {
 
           {/* Subheading */}
           <p className="text-body-lg md:text-heading text-primary-foreground/90 mb-10 max-w-xl font-light opacity-0 animate-fade-up animation-delay-200">
-            Award-focused architecture and interior design studio crafting timeless spaces for discerning clients.
+            Creating functional, thoughtful interiors that prioritize everyday
+            living over fleeting trends. Spaces designed for real life.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animation-delay-300">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/projects">View Our Projects</Link>
+              <Link to="/services">View Our works</Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
               <Link to="/contact">Book a Consultation</Link>
@@ -80,7 +81,7 @@ const HeroSection = () => {
       </div>
 
       {/* Slide Indicators - Better mobile positioning */}
-<div className="absolute bottom-24 md:bottom-16 left-4 md:left-8 flex flex-col gap-2 md:gap-3 z-20">
+      <div className="absolute bottom-24 md:bottom-16 left-4 md:left-8 flex flex-col gap-2 md:gap-3 z-20">
         {heroImages.map((_, index) => (
           <button
             key={index}
