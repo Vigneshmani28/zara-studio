@@ -20,22 +20,40 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
-    id: "bangalore-karnataka",
-    title: "Modern Workspace",
+    id: "bangalore-karnataka-1",
+    title: "Project Alpha",
     location: "Bangalore, Karnataka",
     category: "Commercial",
-    coverImage: "/projects/bangalore_karnataka/1.webp",
+    coverImage: "/projects/bangalore_karnataka_1/1.webp",
     images: [
-      "/projects/bangalore_karnataka/1.webp",
-      "/projects/bangalore_karnataka/2.webp",
-      "/projects/bangalore_karnataka/3.webp",
-      "/projects/bangalore_karnataka/4.webp",
-      "/projects/bangalore_karnataka/5.webp",
-      "/projects/bangalore_karnataka/6.webp",
-      "/projects/bangalore_karnataka/7.webp",
-      "/projects/bangalore_karnataka/8.webp",
-      "/projects/bangalore_karnataka/9.jpeg",
-      "/projects/bangalore_karnataka/10.webp"
+      "/projects/bangalore_karnataka_1/1.webp",
+      "/projects/bangalore_karnataka_1/2.webp",
+      "/projects/bangalore_karnataka_1/3.webp"
+    ]
+  },
+  {
+    id: "bangalore-karnataka-2",
+    title: "Project Beta",
+    location: "Bangalore, Karnataka",
+    category: "Commercial",
+    coverImage: "/projects/bangalore_karnataka_2/1.webp",
+    images: [
+      "/projects/bangalore_karnataka_2/1.webp",
+      "/projects/bangalore_karnataka_2/2.webp",
+      "/projects/bangalore_karnataka_2/3.webp",
+      "/projects/bangalore_karnataka_2/4.webp",
+      "/projects/bangalore_karnataka_2/5.webp"
+    ]
+  },
+  {
+    id: "bangalore-karnataka-3",
+    title: "Project Gamma",
+    location: "Bangalore, Karnataka",
+    category: "Commercial",
+    coverImage: "/projects/bangalore_karnataka_3/1.webp",
+    images: [
+      "/projects/bangalore_karnataka_3/1.webp",
+      "/projects/bangalore_karnataka_3/2.webp"
     ]
   },
   {

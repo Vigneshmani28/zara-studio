@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, ArrowRight, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import emailjs from "@emailjs/browser";
@@ -173,6 +173,27 @@ const Contact = () => {
                             Monday – Friday: 9am – 6pm<br />
                             Saturday: By appointment
                           </p>
+                        </div>
+                      </div>
+                    </StaggerItem>
+
+                    <StaggerItem>
+                      <div className="group flex items-start gap-6">
+                        <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                          <Instagram className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-sans text-xs tracking-widest uppercase text-muted-foreground mb-2 font-bold">
+                            Instagram
+                          </h3>
+                          <a
+                            href="https://www.instagram.com/zara_architects/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-sans text-base text-foreground hover:text-accent transition-colors"
+                          >
+                            @zara_architects
+                          </a>
                         </div>
                       </div>
                     </StaggerItem>

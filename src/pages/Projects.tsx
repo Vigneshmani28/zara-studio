@@ -73,20 +73,38 @@ const Projects = () => {
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 will-change-transform"
                         />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                          <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform duration-500">
+                        {/* Desktop Hover Overlay */}
+                        <div className="hidden lg:flex absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col items-center justify-center backdrop-blur-[2px] p-6 text-center">
+                          <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform duration-500 mb-4">
                             <Maximize2 className="w-6 h-6" />
                           </div>
+                          <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                            <h3 className="font-serif text-2xl text-white mb-2 leading-tight">
+                              {project.location}
+                            </h3>
+                            <span className="font-sans text-[10px] tracking-widest uppercase text-accent font-bold">
+                              {project.images.length} Images
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Mobile Tap Indicator */}
+                        <div className="lg:hidden absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white">
+                          <Maximize2 className="w-4 h-4" />
                         </div>
                       </div>
 
-                      <div className="mt-8 space-y-2 px-2">
-                        <div className="flex items-center justify-between">
-                          <span className="font-sans text-[10px] tracking-widest uppercase text-muted-foreground">
+                      {/* Info below card (Visible on Mobile/Tablet, Hidden on Desktop) */}
+                      <div className="mt-6 px-2 lg:hidden">
+                        <div className="flex items-center justify-between mb-2">
+                           <span className="font-sans text-[10px] tracking-widest uppercase text-accent font-bold">
+                            {project.category}
+                          </span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-muted-foreground font-bold">
                             {project.images.length} Images
                           </span>
                         </div>
-                        <h3 className="font-serif text-3xl text-foreground group-hover:text-accent transition-colors duration-300 leading-tight">
+                        <h3 className="font-serif text-2xl text-foreground leading-tight">
                           {project.location}
                         </h3>
                       </div>

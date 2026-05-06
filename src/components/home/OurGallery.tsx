@@ -101,19 +101,34 @@ const OurGallery = () => {
                       className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                     />
 
-                    {/* Hover Content */}
-                    <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="font-sans text-[10px] tracking-widest uppercase text-accent mb-2 block font-bold">
+                    {/* Desktop Hover Overlay */}
+                    <div className="hidden lg:flex absolute inset-0 z-20 p-8 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-[2px] bg-black/40 text-center">
+                      <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 mb-4 scale-90 group-hover:scale-100 transition-transform duration-500">
+                        <Maximize2 className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 className="font-serif text-xl md:text-2xl text-white mb-1">
+                          {item.project.location}
+                        </h3>
+                        <span className="font-sans text-[10px] tracking-widest uppercase text-accent font-bold">
+                          {item.project.title}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Mobile/Tablet Info Overlay (Always Visible) */}
+                    <div className="lg:hidden absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+                      <div className="flex items-end justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-serif text-lg text-white mb-1 truncate">
                             {item.project.location}
-                          </span>
-                          <h3 className="font-serif text-2xl text-white">
-                            {item.project.title}
                           </h3>
+                          <span className="font-sans text-[8px] tracking-widest uppercase text-accent font-bold block truncate">
+                            {item.project.title}
+                          </span>
                         </div>
-                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                          <Maximize2 className="w-5 h-5 text-white" />
+                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0">
+                          <Maximize2 className="w-4 h-4" />
                         </div>
                       </div>
                     </div>
@@ -142,11 +157,8 @@ const OurGallery = () => {
                   />
 
                   <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-8 py-5 bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl text-center group-hover:translate-y-[-10px] transition-transform">
-                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-1 block font-bold">
-                      {selectedProject.location}
-                    </span>
                     <h3 className="font-serif text-2xl text-white leading-tight mb-4">
-                      {selectedProject.title}
+                      {selectedProject.location}
                     </h3>
                     <Button asChild variant="hero" size="sm" className="rounded-full">
                       <a href="/projects">View Full Project</a>
@@ -161,15 +173,6 @@ const OurGallery = () => {
             </AnimatePresence>
           </DialogContent>
         </Dialog>
-
-        {/* Footer Decoration */}
-        <ScrollReveal className="mt-24 flex justify-center">
-          <div className="flex items-center gap-12 text-muted-foreground/20">
-            <div className="h-px w-32 bg-current" />
-            <span className="font-serif italic text-3xl">Zara Architects</span>
-            <div className="h-px w-32 bg-current" />
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
