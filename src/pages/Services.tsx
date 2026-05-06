@@ -144,7 +144,7 @@ const Services = () => {
                       What We Do
                     </span>
                   </div>
-                  <h2 className="font-serif text-display-2xl text-foreground mb-6">
+                  <h2 className="font-serif text-2xl text-foreground mb-6">
                     Comprehensive Design Expertise
                   </h2>
                   <p className="text-body-lg text-muted-foreground mb-10 leading-relaxed">
@@ -216,7 +216,7 @@ const Services = () => {
                 </span>
                 <div className="w-12 h-px bg-accent" />
               </div>
-              <h2 className="font-serif text-display-2xl text-foreground mb-8">
+              <h2 className="font-serif text-2xl text-foreground mb-8">
                 The Zara Architects Process
               </h2>
               <p className="text-body-xl text-muted-foreground leading-relaxed">
@@ -311,7 +311,7 @@ const Services = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" variant="hero">
-                    <Link to="/contact" className="flex items-center gap-2">
+                    <Link to="/contact" className="flex items-center gap-2 rounded-xl">
                       Schedule a Consultation
                       <ArrowRight className="h-4 w-4" />
                     </Link>

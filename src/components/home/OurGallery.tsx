@@ -11,37 +11,37 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const galleryImages = [
   {
-    url: "/projects/one.webp",
+    url: "/projects/3-7.jpg_11zon.webp",
     title: "Minimalist Interior",
     category: "Residential",
     className: "md:col-span-2 md:row-span-2"
   },
   {
-    url: "/projects/two.webp",
+    url: "/projects/2.jpg_11zon.webp",
     title: "Urban Architecture",
     category: "Commercial",
     className: "md:col-span-1 md:row-span-1"
   },
   {
-    url: "/projects/three.webp",
+    url: "/projects/4.jpg_11zon.webp",
     title: "Serene Living",
     category: "Interior",
     className: "md:col-span-1 md:row-span-2"
   },
   {
-    url: "/projects/four.webp",
+    url: "/projects/3-2.jpg_11zon.webp",
     title: "Modern Workspace",
     category: "Office",
     className: "md:col-span-1 md:row-span-1"
   },
   {
-    url: "/projects/five.webp",
+    url: "/projects/four.webp",
     title: "Contemporary Villa",
     category: "Residential",
     className: "md:col-span-2 md:row-span-1"
   },
   {
-    url: "/projects/six.webp",
+    url: "/projects/three.webp",
     title: "Luxury Lounge",
     category: "Hospitality",
     className: "md:col-span-1 md:row-span-1"
@@ -55,21 +55,42 @@ const OurGallery = () => {
     <section className="section-padding bg-background relative overflow-hidden">
       <div className="arch-container relative z-10">
         {/* Header */}
-        <ScrollReveal className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-12 h-px bg-accent" />
-            <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
-              Visual Journey
-            </span>
-          </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight">
-            Our <span className="text-muted-foreground italic">Gallery</span>
-          </h2>
-          <p className="font-sans text-lg text-muted-foreground max-w-xl">
-            A curated collection of our finest moments in architecture and design,
-            capturing the essence of modern living.
-          </p>
-        </ScrollReveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <ScrollReveal className="max-w-3xl">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-accent" />
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
+                Visual Journey
+              </span>
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight">
+              Our <span className="text-muted-foreground italic">Projects</span>
+            </h2>
+            <p className="font-sans text-lg text-muted-foreground max-w-xl">
+              A curated collection of our finest moments in architecture and design,
+              capturing the essence of modern living.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <motion.div
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <a
+                href="/projects"
+                className="inline-flex items-center gap-4 group"
+              >
+                <span className="font-sans text-sm tracking-widest uppercase text-foreground group-hover:text-accent transition-colors">
+                  View All Projects
+                </span>
+                <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  <ArrowUpRight className="w-5 h-5" />
+                </div>
+              </a>
+            </motion.div>
+          </ScrollReveal>
+        </div>
 
         {/* Bento Grid Gallery */}
         <Dialog>

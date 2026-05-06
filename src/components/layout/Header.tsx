@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Instagram, Facebook, Linkedin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logoLight from "@/assets/logo.png"; // You'll need a light version
-import logoDark from "@/assets/logo.png"; // You'll need a dark version
+import { motion, AnimatePresence } from "framer-motion";
+import logoLight from "@/assets/logo-white.png";
+import logoDark from "@/assets/logo-black.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
-  // { name: "Projects", path: "/projects" },
-  { name: "Our Team", path: "/our-team" },
+  { name: "Team", path: "/our-team" },
+  { name: "Projects", path: "/projects" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -22,7 +23,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,248 +33,270 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  // Determine if hero section has light content
+  // Determine if header should use dark elements based on scroll or page
   const isHomePage = location.pathname === "/";
-  const useDarkHeader = isScrolled || !isHomePage || isMobileMenuOpen;
+  const useDarkHeader = isScrolled || !isHomePage;
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
     }
     return () => {
       document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
+  const headerVariants = {
+    initial: {
+      y: 0,
+      padding: "24px 0",
+      backgroundColor: "rgba(255, 255, 255, 0)",
+    },
+    scrolled: {
+      y: 12,
+      padding: "8px 0",
+    }
+  };
+
+  const navContainerVariants = {
+    initial: {
+      width: "100%",
+      borderRadius: "0px",
+      backgroundColor: "rgba(255, 255, 255, 0)",
+      boxShadow: "0 0 0 rgba(0,0,0,0)",
+      border: "1px solid rgba(255, 255, 255, 0)",
+    },
+    scrolled: {
+      width: "auto",
+      borderRadius: "100px",
+      backgroundColor: "rgba(255, 255, 255, 0.85)",
+      backdropFilter: "blur(12px)",
+      boxShadow: "0 10px 30px -10px rgba(0,0,0,0.1)",
+      border: "1px solid rgba(255, 255, 255, 0.3)",
+      padding: "0 12px",
+    }
+  };
+
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const menuItemVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0 }
+  };
+
   return (
     <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          useDarkHeader
-            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm py-4"
-            : "bg-gradient-to-b from-black/20 to-transparent py-6",
-        )}
-      >
-        <div className="arch-container">
-          <nav className="flex items-center justify-between">
+      <header className="fixed top-2.5 left-0 right-0 z-50 flex justify-center pointer-events-none">
+        <motion.div
+          initial="initial"
+          animate={isScrolled ? "scrolled" : "initial"}
+          variants={navContainerVariants}
+          className={cn(
+            "pointer-events-auto flex items-center transition-all duration-500 overflow-hidden",
+            isScrolled ? "max-w-[95vw] lg:max-w-4xl" : "w-full arch-container"
+          )}
+        >
+          <nav className={cn(
+            "flex items-center justify-between w-full transition-all duration-500",
+            isScrolled ? "py-2 px-4 gap-8" : "py-6"
+          )}>
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <img
+            <Link to="/" className="flex items-center shrink-0 group">
+              <motion.img
                 src={useDarkHeader ? logoDark : logoLight}
                 alt="Zara Architects"
-                className="h-16 lg:h-18 w-auto transition-all duration-300"
+                className={cn(
+                  "transition-all duration-500",
+                  isScrolled ? "h-10 lg:h-12" : "h-16 lg:h-18"
+                )}
+                layoutId="header-logo"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    "arch-link font-sans text-caption tracking-wide uppercase transition-colors relative group",
+                    "relative px-4 py-2 rounded-full font-sans text-[10px] tracking-[0.2em] uppercase transition-all duration-300 group",
                     useDarkHeader
                       ? location.pathname === link.path
-                        ? "text-gray-900 dark:text-white"
-                        : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                        ? "text-primary font-semibold"
+                        : "text-primary/60 hover:text-primary"
                       : location.pathname === link.path
-                        ? "text-white"
-                        : "text-white/80 hover:text-white",
+                        ? "text-white font-semibold"
+                        : "text-white/70 hover:text-white"
                   )}
                 >
-                  {link.name}
-                  <span
+                  <span className="relative z-10 font-bold">{link.name}</span>
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className={cn(
+                        "absolute inset-0 rounded-full -z-0",
+                        isScrolled ? "bg-primary/5" : "bg-white/10"
+                      )}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <motion.div
                     className={cn(
-                      "absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full",
-                      useDarkHeader
-                        ? "bg-gray-900 dark:bg-white"
-                        : "bg-white",
-                      location.pathname === link.path && "w-full"
+                      "absolute inset-0 rounded-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                      isScrolled ? "bg-primary/5" : "bg-white/10"
                     )}
                   />
                 </Link>
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <Button
-                variant={useDarkHeader ? "default" : "outline"}
-                size="lg"
-                asChild
-                className={cn(
-                  "transition-all duration-300 rounded-lg",
-                  !useDarkHeader && "bg-transparent text-white border-white hover:bg-white/10"
-                )}
-              >
-                <Link to="/contact">Book Consultation</Link>
-              </Button>
-            </div>
+            {/* Actions */}
+            <div className="flex items-center gap-4">
+              <div className="hidden lg:block">
+                <Button
+                  variant={useDarkHeader ? "hero" : "heroOutline"}
+                  size="sm"
+                  asChild
+                  className={cn(
+                    "rounded-full transition-all duration-500",
+                    "flex items-center gap-2",
+                    isScrolled ? "px-6 h-9" : "px-8 h-12"
+                  )}
+                >
+                  <Link to="/contact">
+                    Consultation
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {!isMobileMenuOpen && (
-                <Menu
-                  className={`h-6 w-6 transition-colors ${useDarkHeader
-                      ? "text-gray-900 dark:text-white"
-                      : "text-white"
-                    }`}
-                />
-              )}
-            </button>
+              {/* Mobile Menu Trigger */}
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className={cn(
+                  "lg:hidden p-2 rounded-full transition-colors",
+                  useDarkHeader ? "text-primary" : "text-white"
+                )}
+                aria-label="Open menu"
+              >
+                <Menu size={24} />
+              </button>
+            </div>
           </nav>
-        </div>
+        </motion.div>
       </header>
 
-      {/* Improved iPhone-style Mobile Menu Modal */}
-      <div
-        className={cn(
-          "lg:hidden fixed inset-0 z-[999] transition-all duration-300 ease-out",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none delay-150",
-        )}
-      >
-        {/* Enhanced Backdrop */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-black transition-opacity duration-300 ease-out",
-            isMobileMenuOpen ? "opacity-40" : "opacity-0",
-          )}
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-
-        {/* Improved Menu Content - Slides from bottom */}
-        <div
-          className={cn(
-            "absolute bottom-0 left-0 right-0 bg-white dark:bg-gray-900 rounded-t-2xl shadow-xl transition-transform duration-300 ease-out",
-            isMobileMenuOpen ? "translate-y-0" : "translate-y-full",
-          )}
-          style={{
-            maxHeight: "85vh",
-            boxShadow: "0 -10px 30px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          {/* Elegant Drag Handle */}
-          <div
-            className="flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing"
-            onClick={(e) => e.stopPropagation()}
+      {/* Modern Full-screen Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={mobileMenuVariants}
+            className="fixed inset-0 z-[100] bg-white dark:bg-gray-900 lg:hidden flex flex-col"
           >
-            <div className="w-14 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full" />
-          </div>
-
-          <div
-            className="px-6 pb-8 pt-2 overflow-y-auto"
-            style={{ maxHeight: "calc(85vh - 60px)" }}
-          >
-            {/* Enhanced Logo in mobile menu */}
-            <div className="flex flex-col items-center mb-8">
-              <img
-                src={logoDark}
-                alt="Zara Architects"
-                className="h-12 w-auto mb-3"
-              />
-              <span className="font-sans text-xs tracking-[0.25em] uppercase text-muted-foreground text-center">
-                Turning Space Into Soul
-              </span>
-            </div>
-
-            {/* Improved Navigation Links */}
-            <div className="space-y-1 mb-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "group flex items-center justify-between py-4 px-3 rounded-lg transition-all duration-200",
-                    location.pathname === link.path
-                      ? "bg-primary/5 text-foreground border-l-3 border-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-gray-50 dark:hover:bg-gray-800",
-                  )}
-                >
-                  <span className="font-sans text-base font-medium tracking-wide">
-                    {link.name}
-                  </span>
-                  <ChevronRight
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-200",
-                      location.pathname === link.path
-                        ? "text-primary"
-                        : "text-muted-foreground group-hover:text-foreground group-hover:translate-x-1",
-                    )}
-                  />
-                </Link>
-              ))}
-            </div>
-
-            {/* Enhanced CTA Button */}
-            <div className="mb-6">
-              <Button
-                variant="hero"
-                size="lg"
-                className="w-full py-6 text-base font-medium shadow-md hover:shadow-lg transition-shadow"
-                asChild
+            {/* Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
+              <img src={logoDark} alt="Zara Architects" className="h-10 w-auto" />
+              <button
                 onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 text-primary dark:text-white"
               >
-                <Link
-                  to="/contact"
-                  className="flex items-center justify-center gap-2"
-                >
-                  Book Consultation
-                  <ChevronRight className="h-4 w-4" />
+                <X size={28} />
+              </button>
+            </div>
+
+            {/* Menu Content */}
+            <div className="flex-1 flex flex-col justify-center px-8 py-12">
+              <div className="space-y-6">
+                {navLinks.map((link) => (
+                  <motion.div key={link.path} variants={menuItemVariants}>
+                    <Link
+                      to={link.path}
+                      className={cn(
+                        "group flex items-center gap-4 text-4xl md:text-5xl font-serif tracking-tight transition-all duration-300",
+                        location.pathname === link.path
+                          ? "text-primary"
+                          : "text-gray-300 hover:text-primary"
+                      )}
+                    >
+                      <span className="text-xs font-sans tracking-widest text-primary/40 group-hover:text-primary/60 transition-colors">
+                        0{navLinks.indexOf(link) + 1}
+                      </span>
+                      {link.name}
+                      <ArrowRight className={cn(
+                        "h-8 w-8 transition-all duration-500 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0",
+                        location.pathname === link.path && "opacity-100 translate-x-0"
+                      )} />
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile Footer Info */}
+              <motion.div
+                variants={menuItemVariants}
+                className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 grid grid-cols-2 gap-8"
+              >
+                <div className="space-y-4">
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-sans">Contact</p>
+                  <div className="space-y-2">
+                    <a href="tel:+919791540113" className="block text-sm hover:text-primary transition-colors">+91 97915 40113</a>
+                    <a href="mailto:contact@zaraarchitects.com" className="block text-sm hover:text-primary transition-colors">contact@zaraarchitects.com</a>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-sans">Social</p>
+                  <div className="flex gap-4">
+                    <a href="https://instagram.com/zara_architects" className="p-2 bg-gray-50 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-all"><Instagram size={16} /></a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Bottom CTA */}
+            <motion.div
+              variants={menuItemVariants}
+              className="p-8"
+            >
+              <Button variant="hero" className="w-full h-16 rounded-2xl text-base group" asChild>
+                <Link to="/contact">
+                  Start a Project
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-            </div>
-
-            {/* Contact Info Section */}
-            <div className="pt-6 border-t border-gray-100 dark:border-gray-800">
-              <p className="text-sm text-muted-foreground mb-3">
-                Let's create something extraordinary
-              </p>
-              <div className="flex flex-col gap-1">
-                <a
-                  href="mailto:contact@zaraarchitects.com"
-                  className="text-sm text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  contact@zaraarchitects.com
-                </a>
-                <a
-                  href="tel:+919791540113"
-                  className="text-sm text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  +91 97915 40113
-                </a>
-              </div>
-            </div>
-
-            {/* Close button */}
-            <button
-              className="mt-6 w-full py-3 text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Close Menu
-            </button>
-          </div>
-
-          {/* Safe area for mobile devices */}
-          <div className="h-safe-bottom bg-white dark:bg-gray-900" />
-        </div>
-      </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

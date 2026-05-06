@@ -51,7 +51,7 @@ const About = () => {
                 Creating Interiors That Support Everyday Living
               </h1>
               <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
-                We are an interior design studio established in 2025, driven by
+                We are an architecture design studio established in 2025, driven by
                 a new vision of creating spaces that are functional, thoughtful,
                 and rooted in everyday living.
               </p>
@@ -71,7 +71,7 @@ const About = () => {
                   </span>
                 </div>
 
-                <h2 className="font-serif text-display-2xl text-foreground mb-10">
+                <h2 className="font-serif text-2xl text-foreground mb-10">
                   Building Spaces for
                   <span className="block text-accent">Real Life</span>
                 </h2>
@@ -84,7 +84,7 @@ const About = () => {
                         Our Beginning
                       </h3>
                       <p className="text-body-lg text-muted-foreground leading-relaxed">
-                        Zara Architects is an interior design studio established
+                        Zara Architects is an architecture design studio established
                         in 2025, driven by a new vision of creating spaces that
                         are functional, thoughtful, and rooted in everyday
                         living.
@@ -143,7 +143,7 @@ const About = () => {
                 <div className="relative">
                   <img
                     src={studioImage}
-                    alt="Zara Architects interior design studio"
+                    alt="Zara Architects architecture design studio"
                     className="w-full aspect-4/5 object-cover rounded-2xl"
                   />
                   <div className="absolute -bottom-6 -right-6 w-3/4 h-3/4 bg-accent/10 rounded-2xl -z-10" />
@@ -205,7 +205,7 @@ const About = () => {
             <p className="text-body-lg text-muted-foreground mb-10 max-w-xl mx-auto">
               Let's discuss your vision and explore how we can bring it to life.
             </p>
-            <Button variant="hero" size="xl" asChild>
+            <Button variant="hero" size="xl" asChild className="rounded-xl">
               <Link to="/contact">Start a Conversation</Link>
             </Button>
           </ScrollReveal>

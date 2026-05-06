@@ -2,10 +2,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { 
-  Users, 
-  Target, 
-  Layout, 
+import {
+  Users,
+  Target,
+  Layout,
   DollarSign,
   HardHat,
   ArrowRight,
@@ -40,7 +40,7 @@ const teamMembers = [
     id: "supriya",
     name: "Supriya Balasubramaniam",
     role: "Co-Founder | Design & Project Coordination",
-    icon: <Briefcase className="h-8 w-8" />,
+    icon: <User className="h-8 w-8" />,
     description: "As Co-Founder, Supriya plays a key role in design coordination and project management.",
     responsibilities: [
       "Supports the design process through client interaction",
@@ -56,7 +56,7 @@ const teamMembers = [
     id: "soundhriya",
     name: "Soundhriya",
     role: "Accounts & Financial Management",
-    icon: <DollarSign className="h-8 w-8" />,
+    icon: <User className="h-8 w-8" />,
     description: "Soundhriya oversees accounts and financial planning at Zara Architects.",
     responsibilities: [
       "Manages project budgets and billing schedules",
@@ -72,7 +72,7 @@ const teamMembers = [
     id: "yuvaraj",
     name: "Yuvaraj",
     role: "Architect | Site Supervisor | Execution & Coordination",
-    icon: <HardHat className="h-8 w-8" />,
+    icon: <User className="h-8 w-8" />,
     description: "Yuvaraj is responsible for on-site supervision and execution coordination.",
     responsibilities: [
       "Ensures drawings are accurately translated on site",
@@ -150,7 +150,7 @@ const Team = () => {
 
                     <div className="relative overflow-hidden rounded-[2.5rem] border border-border/50 bg-card/40 backdrop-blur-xl p-8 md:p-16 transition-all duration-500 hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/5">
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
-                        
+
                         {/* Sidebar: Icon, Name & Role */}
                         <div className="lg:col-span-4 space-y-8">
                           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center text-white shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform duration-500">

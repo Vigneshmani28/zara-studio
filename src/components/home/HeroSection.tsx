@@ -9,11 +9,11 @@ import hero4 from "@/assets/hero-4.webp";
 import hero5 from "@/assets/hero-5.webp";
 
 const heroImages = [
-  { src: hero1, alt: "Modern architectural interior with natural light" },
-  { src: hero2, alt: "Luxury residential architecture" },
+  { src: hero2, alt: "Modern architectural interior with natural light" },
+  { src: hero5, alt: "Luxury residential architecture" },
   { src: hero3, alt: "Contemporary commercial building" },
   { src: hero4, alt: "Elegant interior design" },
-  { src: hero5, alt: "Modern residential project" },
+  { src: hero1, alt: "Modern residential project" },
 ];
 
 const HeroSection = () => {
@@ -29,7 +29,7 @@ const HeroSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-start overflow-hidden">
       {/* Background Images with Smooth Crossfade */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
@@ -37,9 +37,8 @@ const HeroSection = () => {
             key={index}
             src={image.src}
             alt={image.alt}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/40 to-transparent" />
@@ -47,8 +46,8 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 arch-container w-full px-4 sm:px-6">
-        <div className="max-w-3xl">
+      <div className="relative z-10 w-full px-6 md:px-12 lg:px-20">
+        <div className="max-w-4xl">
           {/* Overline */}
           <div className="flex items-center gap-4 mb-6 opacity-0 animate-fade-up">
             <div className="w-12 h-px bg-accent" />
@@ -58,15 +57,9 @@ const HeroSection = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif text-display-lg md:text-display-xl text-primary-foreground mb-6 opacity-0 animate-fade-up animation-delay-100">
+          <h1 className="font-serif text-display-lg md:text-display-xl text-primary-foreground mb-12 opacity-0 animate-fade-up animation-delay-100 max-w-3xl">
             Designing Spaces That Inspire Living
           </h1>
-
-          {/* Subheading */}
-          <p className="text-body-lg md:text-heading text-primary-foreground/90 mb-10 max-w-xl font-light opacity-0 animate-fade-up animation-delay-200">
-            Creating functional, thoughtful interiors that prioritize everyday
-            living over fleeting trends. Spaces designed for real life.
-          </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animation-delay-300">
@@ -91,18 +84,16 @@ const HeroSection = () => {
           >
             <div className="flex items-center gap-1.5 md:gap-2">
               <div
-                className={`h-0.5 transition-all duration-500 ${
-                  index === currentIndex
-                    ? "w-6 md:w-8 lg:w-10 bg-accent"
-                    : "w-3 md:w-4 lg:w-6 bg-primary-foreground/40 group-hover:w-4 md:group-hover:w-6 lg:group-hover:w-8 group-hover:bg-primary-foreground/60"
-                }`}
+                className={`h-0.5 transition-all duration-500 ${index === currentIndex
+                  ? "w-6 md:w-8 lg:w-10 bg-accent"
+                  : "w-3 md:w-4 lg:w-6 bg-primary-foreground/40 group-hover:w-4 md:group-hover:w-6 lg:group-hover:w-8 group-hover:bg-primary-foreground/60"
+                  }`}
               />
               <span
-                className={`font-sans text-[10px] md:text-xs lg:text-sm tracking-widest uppercase transition-colors duration-300 ${
-                  index === currentIndex
-                    ? "text-accent opacity-100"
-                    : "text-primary-foreground/40 opacity-0 group-hover:opacity-100"
-                }`}
+                className={`font-sans text-[10px] md:text-xs lg:text-sm tracking-widest uppercase transition-colors duration-300 ${index === currentIndex
+                  ? "text-accent opacity-100"
+                  : "text-primary-foreground/40 opacity-0 group-hover:opacity-100"
+                  }`}
               >
                 {String(index + 1).padStart(2, "0")}
               </span>

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { 
-  Home, 
-  Building, 
-  LayoutDashboard, 
-  DraftingCompass, 
+import {
+  Home,
+  Building,
+  LayoutDashboard,
+  DraftingCompass,
   SquareStack,
   DollarSign,
   Palette,
@@ -77,11 +77,11 @@ const ServicesOverview = () => {
             </span>
             <div className="arch-divider w-12" />
           </div>
-          
-          <h2 className="font-serif text-display-2xl text-foreground mb-8">
+
+          <h2 className="font-serif text-6xl text-foreground mb-8">
             Shaping Spaces with Intention
           </h2>
-          
+
           <p className="text-body-xl text-muted-foreground leading-relaxed">
             Zara Architects works at the intersection of interior design and architectural thinking, offering carefully considered solutions that balance function, clarity, and buildability.
           </p>
@@ -114,7 +114,7 @@ const ServicesOverview = () => {
                   <h3 className="font-serif text-heading-lg text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
                     {service.title}
                   </h3>
-                  
+
                   <p className="text-body text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>

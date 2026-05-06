@@ -18,7 +18,7 @@ const AboutSnapshot = () => {
                 </span>
               </div>
 
-              <h2 className="font-serif text-display-2xl text-foreground mb-6">
+              <h2 className="font-serif text-2xl text-foreground mb-6">
                 Designing for Real Life
               </h2>
 
@@ -41,9 +41,9 @@ const AboutSnapshot = () => {
               <ScrollReveal direction="right" delay={0.2}>
                 <div className="bg-card border border-border rounded-2xl p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-body-xl text-muted-foreground leading-relaxed mb-6">
-                    Zara Architects is an interior design studio driven by a new vision of creating spaces that are <span className="text-foreground font-semibold">functional, thoughtful, and rooted in everyday living</span>.
+                    Zara Architects is an architecture design studio driven by a new vision of creating spaces that are <span className="text-foreground font-semibold">functional, thoughtful, and rooted in everyday living</span>.
                   </p>
-                  
+
                   <p className="text-body-lg text-muted-foreground leading-relaxed">
                     We believe good interiors are not defined by luxury, but by how comfortably and efficiently a space supports the people who use it.
                   </p>
@@ -100,7 +100,7 @@ const AboutSnapshot = () => {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
                         <p className="font-sans font-medium text-foreground">Zara Architects</p>
-                        <p className="font-sans text-sm text-muted-foreground">Interior Design Studio</p>
+                        <p className="font-sans text-sm text-muted-foreground">Architecture Design Studio</p>
                       </div>
                       <Button asChild variant="outline" className="group border-accent/30 hover:bg-accent/10 hover:text-accent">
                         <Link to="/about" className="flex items-center gap-2">

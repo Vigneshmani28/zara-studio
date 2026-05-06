@@ -1,226 +1,134 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { cn } from "@/lib/utils";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import { motion, AnimatePresence } from "framer-motion";
-import hero1 from "@/assets/hero-1.webp";
-import hero2 from "@/assets/hero-2.webp";
-import hero3 from "@/assets/hero-3.webp";
-import hero4 from "@/assets/hero-4.webp";
-import hero5 from "@/assets/hero-5.webp";
-import { useMemo } from "react";
+import { X, Maximize2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
-const categories = ["All", "Residential", "Commercial", "Interior"];
-
-const projects = [
-  {
-    id: 1,
-    title: "Villa Serene",
-    location: "Malibu, California",
-    category: "Residential",
-    year: "2023",
-    image: hero1,
-  },
-  {
-    id: 2,
-    title: "Nexus Office Tower",
-    location: "Manhattan, New York",
-    category: "Commercial",
-    year: "2023",
-    image: hero2,
-  },
-  {
-    id: 3,
-    title: "The Penthouse Collection",
-    location: "Miami, Florida",
-    category: "Interior",
-    year: "2022",
-    image: hero4,
-  },
-  {
-    id: 4,
-    title: "Mountain Retreat",
-    location: "Aspen, Colorado",
-    category: "Residential",
-    year: "2022",
-    image: hero5,
-  },
-  {
-    id: 5,
-    title: "Grand Hotel Lobby",
-    location: "Chicago, Illinois",
-    category: "Commercial",
-    year: "2023",
-    image: hero3,
-  },
-  {
-    id: 6,
-    title: "Horizon House",
-    location: "San Francisco, California",
-    category: "Residential",
-    year: "2021",
-    image: hero5,
-  },
-  {
-    id: 7,
-    title: "Urban Loft Residence",
-    location: "Seattle, Washington",
-    category: "Residential",
-    year: "2023",
-    image: hero1,
-  },
-  {
-    id: 8,
-    title: "Tech Campus Hub",
-    location: "Austin, Texas",
-    category: "Commercial",
-    year: "2023",
-    image: hero2,
-  },
+const allProjects = [
+  { url: "/projects/one.webp" },
+  { url: "/projects/two.webp" },
+  { url: "/projects/three.webp" },
+  { url: "/projects/four.webp" },
+  { url: "/projects/five.webp" },
+  { url: "/projects/six.webp" },
+  { url: "/projects/2.jpg_11zon.webp" },
+  { url: "/projects/3-1.jpg_11zon.webp" },
+  { url: "/projects/3-2.jpg_11zon.webp" },
+  { url: "/projects/3-3.jpg_11zon.webp" },
+  { url: "/projects/3-7.jpg_11zon.webp" },
+  { url: "/projects/3-8.jpg_11zon.webp" },
+  { url: "/projects/3-9.jpg_11zon.webp" },
+  { url: "/projects/4.jpg_11zon.webp" },
+  { url: "/projects/5.jpg_11zon.webp" },
 ];
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects = useMemo(() => {
-    return activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+  const [selectedImage, setSelectedImage] = useState<typeof allProjects[0] | null>(null);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
-        {/* Hero */}
-        <section className="pt-32 pb-12 bg-background">
-          <div className="arch-container">
-            <ScrollReveal className="max-w-4xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="arch-divider" />
-                <span className="font-sans text-small tracking-architectural uppercase text-muted-foreground">
-                  Our Work
-                </span>
-              </div>
-              <h1 className="font-serif text-display-lg text-foreground mb-8">
-                Selected Projects
-              </h1>
-              <p className="text-body-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Explore our portfolio of residential, commercial, and interior
-                design projects that showcase our commitment to exceptional
-                design.
-              </p>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Filters */}
-        <section className="py-8 bg-background border-b border-border">
-          <div className="arch-container">
-            <div className="flex flex-wrap gap-2 md:gap-4">
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={cn(
-                    "font-sans text-sm md:text-caption tracking-wide uppercase px-3 md:px-4 py-2 transition-colors border rounded-full",
-                    activeCategory === category
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-foreground",
-                  )}
-                >
-                  {category}
-                </motion.button>
-              ))}
+      
+      <main className="pt-32 pb-24">
+        {/* Hero Section */}
+        <section className="arch-container mb-20">
+          <ScrollReveal className="max-w-4xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-px bg-accent" />
+              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
+                Our Portfolio
+              </span>
             </div>
-          </div>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-[0.9]">
+              Project <span className="text-muted-foreground italic">Gallery</span>
+            </h1>
+            <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              A visual journey through our architectural and design explorations. 
+              Capturing moments of light, space, and material.
+            </p>
+          </ScrollReveal>
         </section>
 
-        {/* Projects Grid - Equal Size Boxes */}
-        <section className="p-4 bg-background">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
+        {/* Projects Grid */}
+        <section className="arch-container">
+          <Dialog>
+            <StaggerContainer
+              className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8"
+              staggerDelay={0.05}
             >
-              <AnimatePresence>
-                {filteredProjects.map((project) => (
-                  <motion.div
-                    key={project.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-                    className="aspect-square group"
+              <AnimatePresence mode="popLayout">
+                {allProjects.map((project, index) => (
+                  <StaggerItem
+                    key={project.url}
+                    className="break-inside-avoid"
                   >
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className="project-card image-zoom group block relative w-full h-full overflow-hidden bg-muted"
-                    >
-                      {/* Image Container */}
-                      <div className="relative w-full h-full overflow-hidden">
+                    <DialogTrigger asChild onClick={() => setSelectedImage(project)}>
+                      <motion.div
+                        layout
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                        className="cursor-pointer group relative overflow-hidden rounded-2xl bg-muted"
+                      >
+                        {/* Image */}
                         <img
-                          src={project.image}
-                          alt={project.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                          src={project.url}
+                          alt="Project Image"
+                          className="w-full h-auto object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                         />
-
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                        {/* Hover Overlay Content */}
-                        <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                          <div className="space-y-2">
-                            <span className="font-sans text-xs md:text-small tracking-architectural uppercase text-white/80 block">
-                              {project.category} · {project.year}
-                            </span>
-                            <h3 className="font-serif text-lg md:text-heading text-white">
-                              {project.title}
-                            </h3>
-                            <p className="font-sans text-xs md:text-small text-white/70">
-                              {project.location}
-                            </p>
+                        
+                        {/* Hover Icon */}
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform duration-500">
+                            <Maximize2 className="w-6 h-6" />
                           </div>
                         </div>
-
-                        {/* Always Visible Corner Label */}
-                        <div className="absolute top-0 left-0 p-3 md:p-4">
-                          <span className="inline-block font-sans text-xs md:text-small tracking-architectural uppercase text-white bg-black/50 backdrop-blur-sm px-2 py-1 rounded-sm">
-                            {project.category}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
+                        
+                        {/* Subtle Border */}
+                        <div className="absolute inset-0 border border-white/5 pointer-events-none rounded-2xl" />
+                      </motion.div>
+                    </DialogTrigger>
+                  </StaggerItem>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </StaggerContainer>
 
-            {/* No Results State */}
-            {filteredProjects.length === 0 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="col-span-full text-center py-16"
-              >
-                <p className="font-sans text-body-lg text-muted-foreground">
-                  No projects found in this category.
-                </p>
-              </motion.div>
-            )}
-          </div>
+            {/* Lightbox Content */}
+            <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-none bg-transparent shadow-none overflow-hidden flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {selectedImage && (
+                  <motion.div
+                    key={selectedImage.url}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    className="relative group flex items-center justify-center w-full h-full"
+                  >
+                    <img
+                      src={selectedImage.url}
+                      alt="Project Detail"
+                      className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                    />
+
+                    <DialogClose className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-black/40 transition-colors">
+                      <X className="w-6 h-6" />
+                    </DialogClose>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </DialogContent>
+          </Dialog>
         </section>
       </main>
+
       <Footer />
     </div>
   );

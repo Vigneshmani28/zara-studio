@@ -44,7 +44,7 @@ const CTASection = () => {
           <Button
             variant="default"
             size="lg"
-            className="bg-accent hover:bg-accent/90 px-8 py-6"
+            className="bg-accent hover:bg-accent/90 px-8 py-6 rounded-xl"
             asChild
           >
             <Link to="/contact">Book a Consultation</Link>
@@ -53,7 +53,7 @@ const CTASection = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-primary-foreground  hover:bg-white/10 px-8 py-6"
+            className="border-primary-foreground  hover:bg-white/10 px-8 py-6 rounded-xl"
             asChild
           >
             <Link to="/services">View Our Work</Link>
