@@ -6,7 +6,7 @@ import hero1 from "@/assets/hero/9.webp";
 import hero2 from "@/assets/hero/10.webp";
 import hero3 from "@/assets/hero/11.webp";
 import hero4 from "@/assets/hero/12.webp";
-import hero5 from "@/assets/hero/13.png";
+import hero5 from "@/assets/hero/13.webp";
 import hero6 from "@/assets/hero/14.webp";
 
 const heroImages = [
