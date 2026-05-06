@@ -52,7 +52,7 @@ const OurGallery = () => {
               </span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight">
-              Our <span className="text-accent italic">Projects</span>
+              Our <span className="text-accent">Projects</span>
             </h2>
             <p className="font-sans text-lg text-muted-foreground max-w-xl leading-relaxed">
               A glimpse into our ongoing projects and architectural experiments. Each frame captures a moment of spatial clarity.

@@ -82,7 +82,7 @@ const Contact = () => {
               </div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-[1.1]">
                 Let's Start a <br />
-                <span className="text-accent italic">Conversation</span>
+                <span className="text-accent">Conversation</span>
               </h1>
               <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 Ready to bring your vision to life? We'd love to hear about your project. Fill out the form below or reach out directly.
@@ -100,7 +100,7 @@ const Contact = () => {
               <div className="lg:col-span-4 space-y-16">
                 <ScrollReveal direction="left">
                   <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-12">
-                    Get in <span className="text-muted-foreground italic">Touch</span>
+                    Get in <span className="text-muted-foreground">Touch</span>
                   </h2>
 
                   <StaggerContainer className="space-y-12" staggerDelay={0.1}>
@@ -209,7 +209,7 @@ const Contact = () => {
                     <div className="relative z-10">
                       <div className="max-w-2xl mb-12">
                         <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">
-                          Project <span className="text-muted-foreground italic">Inquiry</span>
+                          Project <span className="text-muted-foreground">Inquiry</span>
                         </h2>
                         <p className="font-sans text-base text-muted-foreground">
                           Tell us about your project and we'll help you turn your vision into a reality.

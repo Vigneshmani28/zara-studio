@@ -94,8 +94,8 @@ const AboutSnapshot = () => {
                 <div className="relative">
                   <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-accent/20 to-accent/40 rounded-full" />
                   <div className="pl-8">
-                    <blockquote className="text-body-2xl italic text-foreground/90 leading-relaxed mb-6">
-                      "We see interiors as more than finishes and furniture. We see them as spaces where daily life unfolds—spaces that should feel clear, comfortable, and lasting."
+                    <blockquote className="text-body-2xl text-foreground/90 leading-relaxed mb-6">
+                      "We see interiors as more than finishes and furniture. We see them as spaces where daily life unfolds - spaces that should feel clear, comfortable, and lasting."
                     </blockquote>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>

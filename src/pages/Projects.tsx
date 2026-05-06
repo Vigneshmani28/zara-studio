@@ -43,7 +43,7 @@ const Projects = () => {
               </span>
             </div>
             <h1 className="font-serif text-6xl md:text-8xl text-foreground mb-8 leading-[0.9]">
-              Our <span className="text-accent italic">Projects</span>
+              Our <span className="text-accent">Projects</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
               Our architectural explorations across diverse landscapes. Each site represents a unique dialogue between environment and design.
@@ -97,7 +97,7 @@ const Projects = () => {
                       {/* Info below card (Visible on Mobile/Tablet, Hidden on Desktop) */}
                       <div className="mt-6 px-2 lg:hidden">
                         <div className="flex items-center justify-between mb-2">
-                           <span className="font-sans text-[10px] tracking-widest uppercase text-accent font-bold">
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-accent font-bold">
                             {project.category}
                           </span>
                           <span className="font-sans text-[10px] tracking-widest uppercase text-muted-foreground font-bold">

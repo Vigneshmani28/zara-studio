@@ -71,7 +71,7 @@ const About = () => {
                   </span>
                 </div>
 
-                <h2 className="font-serif text-2xl text-foreground mb-10">
+                <h2 className="font-serif text-3xl text-foreground mb-10">
                   Building Spaces for
                   <span className="block text-accent">Real Life</span>
                 </h2>

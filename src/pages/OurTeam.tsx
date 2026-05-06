@@ -127,7 +127,7 @@ const Team = () => {
               </div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-[1.1]">
                 The Focused Team Behind
-                <span className="block text-accent italic">Zara Architects</span>
+                <span className="block text-accent">Zara Architects</span>
               </h1>
               <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
                 Zara Architects is shaped by a small, focused team that brings together design thinking, planning clarity, financial discipline, and on-site coordination.
@@ -173,7 +173,7 @@ const Team = () => {
 
                         {/* Content: Description & Responsibilities */}
                         <div className="lg:col-span-8 space-y-12">
-                          <p className="font-sans text-lg md:text-xl text-muted-foreground leading-relaxed border-l-2 border-accent/20 pl-8 italic">
+                          <p className="font-sans text-lg md:text-xl text-muted-foreground leading-relaxed border-l-2 border-accent/20 pl-8">
                             {member.description}
                           </p>
 
@@ -240,7 +240,7 @@ const Team = () => {
                   </div>
                   <h2 className="font-serif text-5xl md:text-6xl mb-6 leading-tight">
                     Four Pillars of
-                    <span className="block text-accent italic">Our Approach</span>
+                    <span className="block text-accent">Our Approach</span>
                   </h2>
                   <p className="font-sans text-lg text-background/70 leading-relaxed mb-10 max-w-lg">
                     Our team's strength comes from clearly defined roles working in harmony to deliver complete design solutions.
@@ -289,7 +289,7 @@ const Team = () => {
               </div>
               <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-foreground mb-8 leading-tight">
                 Work With Our <br />
-                <span className="text-accent italic">Dedicated Team</span>
+                <span className="text-accent">Dedicated Team</span>
               </h2>
               <p className="font-sans text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Each project benefits from the collective expertise of our entire team, ensuring comprehensive attention to every detail.

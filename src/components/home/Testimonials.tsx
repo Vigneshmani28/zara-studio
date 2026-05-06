@@ -85,8 +85,8 @@ const Testimonials = () => {
         </ScrollReveal>
 
         {/* Enhanced Testimonials Grid */}
-        <StaggerContainer 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" 
+        <StaggerContainer
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           staggerDelay={0.1}
         >
           {testimonials.map((testimonial) => (
@@ -97,7 +97,7 @@ const Testimonials = () => {
                               rounded-2xl p-8 h-full transition-all duration-500 ease-out
                               hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20
                               hover:translate-y-[-4px]">
-                  
+
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-[0.02]">
                     <div className="grid grid-cols-3 gap-2 h-full">
@@ -112,7 +112,7 @@ const Testimonials = () => {
                     {/* Top Section */}
                     <div className="flex items-start justify-between mb-6">
                       <Quote className="h-8 w-8 text-accent/20" />
-                      
+
                       {/* Rating Stars */}
                       <div className="flex items-center gap-0.5">
                         {[...Array(testimonial.rating)].map((_, i) => (
@@ -123,7 +123,7 @@ const Testimonials = () => {
 
                     {/* Quote */}
                     <blockquote className="font-serif text-lg leading-relaxed text-foreground mb-8 
-                                          italic relative pl-4">
+                                           relative pl-4">
                       <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent/30" />
                       "{testimonial.quote}"
                     </blockquote>
@@ -139,7 +139,7 @@ const Testimonials = () => {
                             {testimonial.role}
                           </p>
                         </div>
-                        
+
                         {/* Project Tag */}
                         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <span className="font-sans text-xs font-medium tracking-wider uppercase 
