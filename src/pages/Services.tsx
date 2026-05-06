@@ -227,12 +227,11 @@ const Services = () => {
             <StaggerContainer className="relative" staggerDelay={0.1}>
               {/* Timeline Line */}
               <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border transform -translate-x-1/2" />
-              
+
               {processSteps.map((step, index) => (
                 <StaggerItem key={step.number}>
-                  <div className={`relative flex flex-col lg:flex-row items-center mb-16 lg:mb-24 ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}>
+                  <div className={`relative flex flex-col lg:flex-row items-center mb-16 lg:mb-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    }`}>
                     {/* Content */}
                     <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
                       <div className="bg-background border border-border rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -304,7 +303,7 @@ const Services = () => {
           <div className="arch-container">
             <div className="max-w-3xl mx-auto text-center">
               <ScrollReveal>
-                <h2 className="text-display-2xl text-foreground mb-8">
+                <h2 className="text-2xl text-foreground mb-8">
                   Ready to Create Meaningful Spaces?
                 </h2>
                 <p className="text-body-xl text-muted-foreground mb-10 leading-relaxed">

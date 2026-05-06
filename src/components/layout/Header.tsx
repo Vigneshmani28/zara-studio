@@ -85,8 +85,8 @@ const Header = () => {
                         ? "text-gray-900 dark:text-white"
                         : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                       : location.pathname === link.path
-                      ? "text-white"
-                      : "text-white/80 hover:text-white",
+                        ? "text-white"
+                        : "text-white/80 hover:text-white",
                   )}
                 >
                   {link.name}
@@ -105,9 +105,9 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button 
-                variant={useDarkHeader ? "default" : "outline"} 
-                size="lg" 
+              <Button
+                variant={useDarkHeader ? "default" : "outline"}
+                size="lg"
                 asChild
                 className={cn(
                   "transition-all duration-300 rounded-lg",
@@ -125,12 +125,11 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               {!isMobileMenuOpen && (
-                <Menu 
-                  className={`h-6 w-6 transition-colors ${
-                    useDarkHeader 
-                      ? "text-gray-900 dark:text-white" 
+                <Menu
+                  className={`h-6 w-6 transition-colors ${useDarkHeader
+                      ? "text-gray-900 dark:text-white"
                       : "text-white"
-                  }`} 
+                    }`}
                 />
               )}
             </button>
@@ -253,11 +252,11 @@ const Header = () => {
                   contact@zaraarchitects.com
                 </a>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919791540113"
                   className="text-sm text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  +1 (234) 567-890
+                  +91 97915 40113
                 </a>
               </div>
             </div>
