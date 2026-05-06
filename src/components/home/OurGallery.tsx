@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import { ArrowUpRight, X, Maximize2 } from "lucide-react";
 import {
@@ -8,48 +8,36 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-
-const galleryImages = [
-  {
-    url: "/projects/3-7.jpg_11zon.webp",
-    title: "Minimalist Interior",
-    category: "Residential",
-    className: "md:col-span-2 md:row-span-2"
-  },
-  {
-    url: "/projects/2.jpg_11zon.webp",
-    title: "Urban Architecture",
-    category: "Commercial",
-    className: "md:col-span-1 md:row-span-1"
-  },
-  {
-    url: "/projects/4.jpg_11zon.webp",
-    title: "Serene Living",
-    category: "Interior",
-    className: "md:col-span-1 md:row-span-2"
-  },
-  {
-    url: "/projects/3-2.jpg_11zon.webp",
-    title: "Modern Workspace",
-    category: "Office",
-    className: "md:col-span-1 md:row-span-1"
-  },
-  {
-    url: "/projects/four.webp",
-    title: "Contemporary Villa",
-    category: "Residential",
-    className: "md:col-span-2 md:row-span-1"
-  },
-  {
-    url: "/projects/three.webp",
-    title: "Luxury Lounge",
-    category: "Hospitality",
-    className: "md:col-span-1 md:row-span-1"
-  }
-];
+import { PROJECTS_DATA, Project } from "@/data/projects";
+import { Button } from "@/components/ui/button";
 
 const OurGallery = () => {
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [randomImages, setRandomImages] = useState<{ url: string; project: Project; className: string }[]>([]);
+
+  // Pick random images from the project data
+  useEffect(() => {
+    const allImagesWithProjects = PROJECTS_DATA.flatMap(p =>
+      p.images.map(img => ({ url: img, project: p }))
+    );
+
+    // Shuffle and pick 6
+    const shuffled = [...allImagesWithProjects].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 6).map((item, index) => {
+      // Assign classNames based on index to maintain the "cool" bento grid
+      const classes = [
+        "md:col-span-2 md:row-span-2", // Large
+        "md:col-span-1 md:row-span-1", // Small
+        "md:col-span-1 md:row-span-2", // Tall
+        "md:col-span-1 md:row-span-1", // Small
+        "md:col-span-2 md:row-span-1", // Wide
+        "md:col-span-1 md:row-span-1", // Small
+      ];
+      return { ...item, className: classes[index] };
+    });
+
+    setRandomImages(selected);
+  }, []);
 
   return (
     <section className="section-padding bg-background relative overflow-hidden">
@@ -59,16 +47,15 @@ const OurGallery = () => {
           <ScrollReveal className="max-w-3xl">
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-accent" />
-              <span className="font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
+              <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-muted-foreground font-bold">
                 Visual Journey
               </span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight">
-              Our <span className="text-muted-foreground italic">Projects</span>
+              Our <span className="text-accent italic">Projects</span>
             </h2>
-            <p className="font-sans text-lg text-muted-foreground max-w-xl">
-              A curated collection of our finest moments in architecture and design,
-              capturing the essence of modern living.
+            <p className="font-sans text-lg text-muted-foreground max-w-xl leading-relaxed">
+              A glimpse into our ongoing projects and architectural experiments. Each frame captures a moment of spatial clarity.
             </p>
           </ScrollReveal>
 
@@ -81,7 +68,7 @@ const OurGallery = () => {
                 href="/projects"
                 className="inline-flex items-center gap-4 group"
               >
-                <span className="font-sans text-sm tracking-widest uppercase text-foreground group-hover:text-accent transition-colors">
+                <span className="font-sans text-[10px] tracking-widest uppercase text-foreground group-hover:text-accent transition-colors font-bold">
                   View All Projects
                 </span>
                 <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
@@ -93,45 +80,44 @@ const OurGallery = () => {
         </div>
 
         {/* Bento Grid Gallery */}
-        <Dialog>
+        <Dialog onOpenChange={(open) => !open && setSelectedProject(null)}>
           <StaggerContainer
             className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]"
             staggerDelay={0.05}
           >
-            {galleryImages.map((image, index) => (
+            {randomImages.map((item, index) => (
               <StaggerItem
                 key={index}
-                className={`group relative overflow-hidden rounded-2xl bg-muted cursor-pointer ${image.className}`}
+                className={`group relative overflow-hidden rounded-3xl bg-muted cursor-pointer ${item.className}`}
               >
-                <DialogTrigger asChild onClick={() => setSelectedImage(image)}>
+                <DialogTrigger asChild onClick={() => setSelectedProject(item.project)}>
                   <div className="w-full h-full">
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     <img
-                      src={image.url}
-                      alt={image.title}
+                      src={item.url}
+                      alt={item.project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                     />
 
                     {/* Hover Content */}
-                    <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                    <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className="font-sans text-xs tracking-widest uppercase text-accent mb-2 block">
-                            {image.category}
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-accent mb-2 block font-bold">
+                            {item.project.location}
                           </span>
-                          <h3 className="font-serif text-xl md:text-2xl text-white mb-2">
-                            {image.title}
+                          <h3 className="font-serif text-2xl text-white">
+                            {item.project.title}
                           </h3>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                          <Maximize2 className="w-4 h-4 text-white" />
+                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                          <Maximize2 className="w-5 h-5 text-white" />
                         </div>
                       </div>
                     </div>
 
-                    {/* Grid Lines Overlay (Subtle) */}
                     <div className="absolute inset-0 pointer-events-none border border-white/5 z-30" />
                   </div>
                 </DialogTrigger>
@@ -141,31 +127,30 @@ const OurGallery = () => {
 
           <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-none bg-transparent shadow-none overflow-hidden flex items-center justify-center">
             <AnimatePresence mode="wait">
-              {selectedImage && (
+              {selectedProject && (
                 <motion.div
-                  key={selectedImage.url}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  key={selectedProject.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   className="relative group flex items-center justify-center w-full h-full"
                 >
                   <img
-                    src={selectedImage.url}
-                    alt={selectedImage.title}
-                    className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                    src={selectedProject.coverImage}
+                    alt={selectedProject.title}
+                    className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
                   />
 
-                  {/* Floating Info Overlay */}
-                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <div className="text-center">
-                      <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-1 block">
-                        {selectedImage.category}
-                      </span>
-                      <h3 className="font-serif text-xl text-white leading-tight">
-                        {selectedImage.title}
-                      </h3>
-                    </div>
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-8 py-5 bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl text-center group-hover:translate-y-[-10px] transition-transform">
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-1 block font-bold">
+                      {selectedProject.location}
+                    </span>
+                    <h3 className="font-serif text-2xl text-white leading-tight mb-4">
+                      {selectedProject.title}
+                    </h3>
+                    <Button asChild variant="hero" size="sm" className="rounded-full">
+                      <a href="/projects">View Full Project</a>
+                    </Button>
                   </div>
 
                   <DialogClose className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-black/40 transition-colors">
@@ -177,12 +162,12 @@ const OurGallery = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Bottom Decorative Element */}
-        <ScrollReveal className="mt-20 flex justify-center">
-          <div className="flex items-center gap-8 text-muted-foreground/30">
-            <div className="h-px w-24 bg-current" />
-            <span className="font-serif italic text-2xl">Zara Studio</span>
-            <div className="h-px w-24 bg-current" />
+        {/* Footer Decoration */}
+        <ScrollReveal className="mt-24 flex justify-center">
+          <div className="flex items-center gap-12 text-muted-foreground/20">
+            <div className="h-px w-32 bg-current" />
+            <span className="font-serif italic text-3xl">Zara Architects</span>
+            <div className="h-px w-32 bg-current" />
           </div>
         </ScrollReveal>
       </div>

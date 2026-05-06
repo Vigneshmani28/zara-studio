@@ -2,18 +2,21 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import hero1 from "@/assets/hero-1.webp";
-import hero2 from "@/assets/hero-2.webp";
-import hero3 from "@/assets/hero-3.webp";
-import hero4 from "@/assets/hero-4.webp";
-import hero5 from "@/assets/hero-5.webp";
+import hero1 from "@/assets/hero/9.webp";
+import hero2 from "@/assets/hero/10.webp";
+import hero3 from "@/assets/hero/11.webp";
+import hero4 from "@/assets/hero/12.webp";
+import hero5 from "@/assets/hero/13.webp";
+import hero6 from "@/assets/hero/14.webp";
 
 const heroImages = [
   { src: hero2, alt: "Modern architectural interior with natural light" },
   { src: hero5, alt: "Luxury residential architecture" },
+  { src: hero6, alt: "Modern residential project" },
   { src: hero3, alt: "Contemporary commercial building" },
   { src: hero4, alt: "Elegant interior design" },
   { src: hero1, alt: "Modern residential project" },
+
 ];
 
 const HeroSection = () => {
@@ -63,10 +66,10 @@ const HeroSection = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animation-delay-300">
-            <Button variant="hero" size="xl" asChild>
+            <Button variant="hero" size="xl" asChild className="bg-white text-black rounded-xl hover:bg-white/70">
               <Link to="/services">View Our works</Link>
             </Button>
-            <Button variant="heroOutline" size="xl" asChild>
+            <Button variant="heroOutline" size="xl" asChild className="rounded-xl">
               <Link to="/contact">Book a Consultation</Link>
             </Button>
           </div>

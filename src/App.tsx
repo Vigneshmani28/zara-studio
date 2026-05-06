@@ -42,6 +42,7 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
     initial="initial"
     animate="enter"
     exit="exit"
+    className="will-change-opacity"
   >
     {children}
   </motion.div>
