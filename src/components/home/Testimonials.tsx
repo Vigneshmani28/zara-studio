@@ -6,72 +6,54 @@ const testimonials = [
     id: 1,
     quote: "Zara Architects understood our vision perfectly and delivered a beautiful, functional design with great attention to detail.",
     author: "Guna",
-    role: "Homeowner",
-    project: "Residential",
     rating: 5,
   },
   {
     id: 2,
     quote: "Very professional team with creative ideas. The entire process was smooth and the final outcome exceeded our expectations.",
     author: "Saranya",
-    role: "Client",
-    project: "Interior Design",
     rating: 5,
   },
   {
     id: 3,
     quote: "Excellent design approach and timely execution. Highly satisfied with the quality and support provided throughout the project.",
     author: "Mohan",
-    role: "Property Owner",
-    project: "Consultation",
     rating: 5,
   },
   {
     id: 4,
     quote: "They transformed our space into something modern and elegant. Truly impressed with their dedication and creativity.",
     author: "Maheswari",
-    role: "Client",
-    project: "Modernization",
     rating: 5,
   },
   {
     id: 5,
     quote: "Great experience working with Zara Architects. Their planning and design sense made our dream home a reality.",
     author: "Raja",
-    role: "Homeowner",
-    project: "New Build",
     rating: 5,
   },
   {
     id: 6,
     quote: "The team was friendly, responsive, and highly talented. Every detail was thoughtfully designed and executed beautifully.",
     author: "Karthigai Rani",
-    role: "Client",
-    project: "Interior",
     rating: 5,
   },
   {
     id: 7,
     quote: "Creative concepts, quality work, and excellent communication. I would definitely recommend Zara Architects to others.",
     author: "Shiva",
-    role: "Client",
-    project: "Commercial",
     rating: 5,
   },
   {
     id: 8,
     quote: "Zara Architects delivered a stylish and practical design that perfectly suited our lifestyle and requirements.",
     author: "Vignesh",
-    role: "Client",
-    project: "Residential",
     rating: 5,
   },
   {
     id: 9,
     quote: "Very satisfied with their service and commitment. The final design was both unique and aesthetically pleasing.",
     author: "Logeshwaran",
-    role: "Business Owner",
-    project: "Design",
     rating: 5,
   },
 ];
@@ -114,7 +96,7 @@ const Testimonials = () => {
                 <div className="relative overflow-hidden bg-background border border-border/50 
                               rounded-2xl p-8 h-full transition-all duration-500 ease-out
                               hover:shadow-2xl hover:shadow-accent/5 hover:border-accent/20
-                              hover:translate-y-[-4px]">
+                              hover:translate-y-[-4px] flex flex-col">
 
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-[0.02]">
@@ -126,7 +108,7 @@ const Testimonials = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
                     {/* Top Section */}
                     <div className="flex items-start justify-between mb-6">
                       <Quote className="h-8 w-8 text-accent/20" />
@@ -141,22 +123,16 @@ const Testimonials = () => {
 
                     {/* Quote */}
                     <blockquote className="font-serif text-lg leading-relaxed text-foreground mb-8 
-                                           relative pl-4">
+                                           relative pl-4 flex-grow">
                       <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent/30" />
                       "{testimonial.quote}"
                     </blockquote>
 
                     {/* Author Section */}
-                    <div className="pt-6 border-t border-border/50">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="font-sans text-base font-medium text-foreground">
-                            {testimonial.author}
-                          </p>
-                        </div>
-
-
-                      </div>
+                    <div className="pt-6 border-t border-border/50 text-center">
+                      <p className="font-sans text-base font-medium text-foreground tracking-wide">
+                        {testimonial.author}
+                      </p>
                     </div>
                   </div>
 
