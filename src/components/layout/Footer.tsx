@@ -148,20 +148,36 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p className="text-gray-500 text-xs">
-              © {currentYear} Zara Architects. All rights reserved.
-            </p>
-            {/* <div className="flex gap-4 text-xs">
-              <Link to="/privacy" className="text-gray-500 hover:text-gray-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <span className="text-gray-600">•</span>
-              <Link to="/terms" className="text-gray-500 hover:text-gray-400 transition-colors">
-                Terms of Service
-              </Link>
-            </div> */}
+        <div className="py-8 border-t border-white/10">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
+              <p className="text-gray-500 text-xs tracking-wider">
+                © {currentYear} Zara Architects. All rights reserved.
+              </p>
+              <div className="flex items-center gap-4">
+                <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em]">
+                  Privacy Policy
+                </Link>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em]">
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+            
+            <div className="text-center lg:text-right">
+              <p className="text-gray-600 text-[10px] uppercase tracking-[0.2em] flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+                <span className="opacity-60">Designed & Developed by</span>
+                <a 
+                  href="https://puzzlez.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-accent transition-colors font-medium tracking-normal"
+                >
+                  puzzlez.in
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
