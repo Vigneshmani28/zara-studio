@@ -4,56 +4,74 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scr
 const testimonials = [
   {
     id: 1,
-    quote:
-      "Zara Architects transformed our vision into a reality that exceeded every expectation. Their attention to detail and commitment to excellence is unmatched.",
-    author: "Michael & Sarah Chen",
-    role: "Villa Serene, Malibu",
+    quote: "Zara Architects understood our vision perfectly and delivered a beautiful, functional design with great attention to detail.",
+    author: "Guna",
+    role: "Homeowner",
     project: "Residential",
     rating: 5,
   },
   {
     id: 2,
-    quote:
-      "Working with the Zara team was a seamless experience. They understood our brand identity and created a space that truly represents who we are.",
-    author: "David Morrison",
-    role: "CEO, Nexus Technologies",
-    project: "Commercial",
+    quote: "Very professional team with creative ideas. The entire process was smooth and the final outcome exceeded our expectations.",
+    author: "Saranya",
+    role: "Client",
+    project: "Interior Design",
     rating: 5,
   },
   {
     id: 3,
-    quote:
-      "The level of craftsmanship and thoughtfulness in every decision made our project truly special. We couldn't be happier with our new home.",
-    author: "Elena Rodriguez",
-    role: "Mountain Retreat, Aspen",
-    project: "Residential",
+    quote: "Excellent design approach and timely execution. Highly satisfied with the quality and support provided throughout the project.",
+    author: "Mohan",
+    role: "Property Owner",
+    project: "Consultation",
     rating: 5,
   },
   {
     id: 4,
-    quote:
-      "The sustainable design solutions they implemented not only reduced our carbon footprint but also resulted in significant operational savings.",
-    author: "Robert Kim",
-    role: "Sustainability Director, GreenTech",
-    project: "Corporate",
+    quote: "They transformed our space into something modern and elegant. Truly impressed with their dedication and creativity.",
+    author: "Maheswari",
+    role: "Client",
+    project: "Modernization",
     rating: 5,
   },
   {
     id: 5,
-    quote:
-      "From concept to completion, the Zara team demonstrated unparalleled professionalism. Our hotel lobby has become the talk of the city.",
-    author: "Sophia Williams",
-    role: "Managing Director, Grand Hotels",
-    project: "Hospitality",
+    quote: "Great experience working with Zara Architects. Their planning and design sense made our dream home a reality.",
+    author: "Raja",
+    role: "Homeowner",
+    project: "New Build",
     rating: 5,
   },
   {
     id: 6,
-    quote:
-      "The architectural vision combined with practical functionality resulted in a space that inspires creativity and productivity every day.",
-    author: "Thomas Chen",
-    role: "Creative Director, Studio X",
-    project: "Office",
+    quote: "The team was friendly, responsive, and highly talented. Every detail was thoughtfully designed and executed beautifully.",
+    author: "Karthigai Rani",
+    role: "Client",
+    project: "Interior",
+    rating: 5,
+  },
+  {
+    id: 7,
+    quote: "Creative concepts, quality work, and excellent communication. I would definitely recommend Zara Architects to others.",
+    author: "Shiva",
+    role: "Client",
+    project: "Commercial",
+    rating: 5,
+  },
+  {
+    id: 8,
+    quote: "Zara Architects delivered a stylish and practical design that perfectly suited our lifestyle and requirements.",
+    author: "Vignesh",
+    role: "Client",
+    project: "Residential",
+    rating: 5,
+  },
+  {
+    id: 9,
+    quote: "Very satisfied with their service and commitment. The final design was both unique and aesthetically pleasing.",
+    author: "Logeshwaran",
+    role: "Business Owner",
+    project: "Design",
     rating: 5,
   },
 ];
@@ -135,18 +153,9 @@ const Testimonials = () => {
                           <p className="font-sans text-base font-medium text-foreground">
                             {testimonial.author}
                           </p>
-                          <p className="font-sans text-sm text-muted-foreground mt-1">
-                            {testimonial.role}
-                          </p>
                         </div>
 
-                        {/* Project Tag */}
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <span className="font-sans text-xs font-medium tracking-wider uppercase 
-                                         text-accent px-2 py-1 rounded border border-accent/30">
-                            {testimonial.project}
-                          </span>
-                        </div>
+
                       </div>
                     </div>
                   </div>

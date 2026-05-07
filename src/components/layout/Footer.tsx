@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Studio", path: "/studio" },
-    { name: "Projects", path: "/projects" },
+    { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Journal", path: "/journal" },
+    { name: "Projects", path: "/projects" },
+    { name: "Our Team", path: "/our-team" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -164,14 +164,14 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            
+
             <div className="text-center lg:text-right">
               <p className="text-gray-600 text-[10px] uppercase tracking-[0.2em] flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                 <span className="opacity-60">Designed & Developed by</span>
-                <a 
-                  href="https://puzzlez.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://puzzlez.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-400 hover:text-accent transition-colors font-medium tracking-normal"
                 >
                   puzzlez.in
