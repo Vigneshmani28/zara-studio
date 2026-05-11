@@ -56,7 +56,7 @@ const CTASection = () => {
             className="border-primary-foreground  hover:bg-white/10 px-8 py-6 rounded-xl"
             asChild
           >
-            <Link to="/services">View Our Work</Link>
+            <Link to="/projects">View Our Work</Link>
           </Button>
         </div>
 

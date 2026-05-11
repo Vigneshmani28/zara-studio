@@ -302,7 +302,7 @@ const Team = () => {
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-full px-12 py-8 border-border hover:bg-secondary text-base font-semibold transition-all">
-                  <Link to="/services">Explore Our Work</Link>
+                  <Link to="/projects">Explore Our Work</Link>
                 </Button>
               </div>
             </ScrollReveal>

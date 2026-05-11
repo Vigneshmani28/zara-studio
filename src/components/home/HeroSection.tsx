@@ -67,7 +67,7 @@ const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animation-delay-300">
             <Button variant="hero" size="xl" asChild className="bg-white text-black rounded-xl hover:bg-white/70">
-              <Link to="/services">View Our works</Link>
+              <Link to="/projects">View Our works</Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild className="rounded-xl">
               <Link to="/contact">Book a Consultation</Link>
