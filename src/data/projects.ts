@@ -9,14 +9,26 @@ export interface Project {
 
 export const PROJECTS_DATA: Project[] = [
   {
-    id: "chennai-tamilnadu",
+    id: "chennai-tamilnadu-1",
     title: "Urban Sanctuary",
     location: "Chennai, Tamil Nadu",
     category: "Residential",
-    coverImage: "/projects/chennai_tamilnadu/1.webp",
+    coverImage: "/projects/chennai_tamilnadu_1/1.webp",
     images: [
-      "/projects/chennai_tamilnadu/1.webp",
-      "/projects/chennai_tamilnadu/2.webp"
+      "/projects/chennai_tamilnadu_1/1.webp",
+      "/projects/chennai_tamilnadu_1/2.webp"
+    ]
+  },
+  {
+    id: "chennai-tamilnadu-2",
+    title: "Modern Haven",
+    location: "Chennai, Tamil Nadu",
+    category: "Residential",
+    coverImage: "/projects/chennai_tamilnadu_2/1.webp",
+    images: [
+      "/projects/chennai_tamilnadu_2/1.webp",
+      "/projects/chennai_tamilnadu_2/2.webp",
+      "/projects/chennai_tamilnadu_2/3.webp",
     ]
   },
   {
